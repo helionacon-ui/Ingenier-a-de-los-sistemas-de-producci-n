@@ -31,6 +31,49 @@
 <h3 id="t4-metodo">Método paso a paso</h3>
 <ol class="steps"><li>Identifica qué tensiones son <b>nulas</b>: donde no hay fuerza aplicada, la tensión principal es cero.</li><li>Escribe las tres deformaciones principales y comprueba que <b>suman cero</b>.</li><li>Calcula \(\varepsilon_{eq}\) con la fórmula y verifica el atajo: en recalcado debe salir \(|\varepsilon_3|\).</li><li>Lleva \(\varepsilon_{eq}\) a la curva del material para obtener la tensión.</li><li>Para la fuerza, usa la <b>sección instantánea</b>, no la inicial.</li><li>En deformación plana, recuerda que la tensión intermedia es la <b>media</b> de las otras dos.</li></ol>
 <div class="box trap"><h4>Trampas típicas</h4><ul><li><b>Olvidar que las tensiones nulas también cuentan en Von Mises.</b> \(\sigma_1=\sigma_2=0\) no significa que se puedan ignorar: entran en la fórmula como ceros y afectan al resultado.</li><li><b>Usar una deformación principal en vez de la equivalente.</b> La curva del material se alimenta con \(\varepsilon_{eq}\). En recalcado coinciden con \(|\varepsilon_3|\), pero en deformación plana no.</li><li><b>Dar por simétricas las deformaciones sin comprobarlo.</b> \(\varepsilon_1=\varepsilon_2\) sólo si la sección es axisimétrica o cuadrada. En deformación plana, \(\varepsilon_2=0\).</li><li><b>Confundir deformación plana con tensión plana.</b> En deformación plana es \(\varepsilon_2=0\) y \(\sigma_2\neq0\); en tensión plana es al revés. En laminación de chapa ancha se da la primera.</li><li><b>Calcular la fuerza con el área inicial.</b> La tensión real actúa sobre el área real, que ha cambiado.</li></ul></div>
+<h3 id="t4-vonmises-paso">Von Mises en estado plano, paso a paso</h3>
+<p>Para un estado plano de tensiones, el criterio de Von Mises da una tensión equivalente a partir de tres números. El círculo de Mohr sirve para comprobar las tensiones principales y el resultado.</p>
+<figure class="fig"><p class="ft">Figura interactiva · σₓ = 80, σ_y = −20, τₓᵧ = 40 MPa</p>
+<div id="vm-paso" style="font-family:system-ui,sans-serif"><input id="vm-paso-s" type="range" min="0" max="6" step="1" value="0" style="width:100%"><div id="vm-paso-l" style="font-size:13px;color:#56635e;margin:4px 0">paso de la resolución (0 = problema): 0</div><canvas id="vm-paso-c" width="640" height="320" style="width:100%;max-width:640px;height:auto;display:block"></canvas><div id="vm-paso-t" style="font-size:15px;line-height:1.5;margin-top:8px;min-height:90px"></div></div>
+<figcaption>Sube el paso: se construye el círculo de Mohr, se obtienen las principales, se calcula σ_vm con dos caminos y, por último, el coeficiente de seguridad.</figcaption></figure>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Olvidar el 3 delante de τ² en la fórmula de Von Mises.</li><li>Usar la tensión de Von Mises con materiales frágiles, para los que el criterio adecuado es otro.</li><li>Confundir el radio del círculo de Mohr con la tensión tangencial máxima sin dividir por dos la diferencia de σ.</li></ul></div>
+<script>
+(function(){
+  var T=[
+   'Estado plano de tensiones: σₓ = 80 MPa, σ_y = −20 MPa y τₓᵧ = 40 MPa. El acero tiene límite elástico σ_e = 250 MPa. Se pide la tensión de Von Mises y el coeficiente de seguridad.',
+   'Círculo de Mohr: centro en (σₓ + σ_y)/2 = 30 MPa y radio R = √[((σₓ − σ_y)/2)² + τ²] = √(50² + 40²) = 64,0 MPa.',
+   'Tensiones principales: σ₁ = 30 + 64 = 94 MPa y σ₂ = 30 − 64 = −34 MPa. Ambas son reales, y el estado es plano.',
+   'Von Mises en función de las componentes: σ_vm = √(σₓ² − σₓσ_y + σ_y² + 3τ²) = √(6400 + 1600 + 400 + 4800) = √13200 = 114,9 MPa.',
+   'Comprobación con las principales: σ_vm = √(σ₁² − σ₁σ₂ + σ₂²) = √(8836 + 3196 + 1156) = √13188 = 114,8 MPa. La diferencia es de redondeo: los dos caminos coinciden.',
+   'Coeficiente de seguridad: n = σ_e / σ_vm = 250 / 114,9 = 2,18.',
+   'Conclusión: n > 1, así que el criterio predice que no hay fluencia. Von Mises se aplica a materiales dúctiles como este acero.'
+  ];
+  var cv=document.getElementById('vm-paso-c'), g=cv.getContext('2d'), sl=document.getElementById('vm-paso-s'),
+      lb=document.getElementById('vm-paso-l'), tx=document.getElementById('vm-paso-t');
+  var S=2.2, OX=330, OY=160;
+  function X(s){return OX+s*S;} function Y(t){return OY-t*S;}
+  function txt(s,x,y,col,sz,al){g.fillStyle=col;g.font=(sz||12)+'px system-ui,sans-serif';g.textAlign=al||'left';g.fillText(s,x,y);}
+  function line(x1,y1,x2,y2,col,w,dash){g.strokeStyle=col;g.lineWidth=w||1.2;g.setLineDash(dash||[]);g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);g.stroke();g.setLineDash([]);}
+  function dot(x,y,col){g.fillStyle=col;g.beginPath();g.arc(x,y,4.5,0,6.283);g.fill();}
+  function draw(p){
+    g.clearRect(0,0,cv.width,cv.height);
+    line(X(-60),Y(0),X(110),Y(0),'#8a958f',1); line(X(0),Y(-70),X(0),Y(70),'#8a958f',1);
+    txt('σ (MPa)',X(110),Y(0)-6,'#56635e',11,'right'); txt('τ',X(0)+6,Y(70),'#56635e',11,'left');
+    if(p>=1){ var R=64*S;
+      g.strokeStyle='#3a63c4';g.lineWidth=2;g.beginPath();g.arc(X(30),Y(0),R,0,6.283);g.stroke();
+      dot(X(30),Y(0),'#3a63c4'); txt('C = 30',X(30),Y(0)+16,'#3a63c4',11,'center');
+      line(X(30),Y(0),X(30)+R*0.6,Y(0)-R*0.8,'#3a63c4',1,[4,3]); txt('R = 64',X(30)+R*0.3,Y(0)-R*0.4-6,'#3a63c4',11,'left'); }
+    if(p>=3){ dot(X(80),Y(40),'#b4232f'); txt('A (80, 40)',X(80)+6,Y(40)-6,'#b4232f',11,'left');
+      dot(X(-20),Y(-40),'#b4232f'); txt('B (−20, −40)',X(-20)-6,Y(-40)+14,'#b4232f',11,'right'); }
+    if(p>=2){ dot(X(94),Y(0),'#2c8a52'); txt('σ₁ = 94',X(94),Y(0)-8,'#2c8a52',11,'center');
+      dot(X(-34),Y(0),'#2c8a52'); txt('σ₂ = −34',X(-34),Y(0)-8,'#2c8a52',11,'center'); }
+    lb.textContent='paso de la resolución (0 = problema): '+p;
+    tx.innerHTML='<div>'+T[p]+'</div>';
+  }
+  sl.addEventListener('input',function(){draw(+sl.value);});
+  draw(0);
+})();
+</script>
 <h3 id="t4-problema">Problema resuelto</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p>Un prisma de base cuadrada \(l_0=20\) mm y altura \(h_0=45\) mm se forja hasta \(h_f=0{,}75\,h_0\). El material responde a \(\sigma=300\,\varepsilon^{0{,}37}\) N/mm². Calcula las deformaciones logarítmicas y la equivalente, las tensiones reales, la fuerza necesaria y el trabajo.</div>
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>a) Deformaciones.</b> Por constancia de volumen, \(l_0^2h_0=l_f^2h_f\):</p>
