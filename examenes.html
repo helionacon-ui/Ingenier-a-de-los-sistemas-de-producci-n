@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problemas resueltos · Ingeniería de los Sistemas de Producción · Guía para aprobar</title>
+<meta name="description" content="Problemas de examen de Ingeniería de los Sistemas de Producción (UPCT) resueltos paso a paso, con los parciales de 2020">
+<meta name="theme-color" content="#8a3324">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2019-09">2019/20</time> (apuntes completos de la asignatura, formulario, parciales de 2020 resueltos y memorias de las prácticas de control numérico) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Ingeniería de los Sistemas de Producción</a><span class="sep">›</span><span>Practicar</span><span class="sep">›</span><span>Problemas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Fundamentos</div><a href="tema-01.html" style="--tc:var(--c2)">T1 El proceso de fabricación: flujos y clasificación</a><div class="grp">Deformación</div><a href="tema-02.html" style="--tc:var(--c3)">T2 Deformación plástica y temperatura</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Tensión y deformación reales</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Estado de tensiones y criterio de Von Mises</a><div class="grp">Procesos</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Forja, recalcado y estampación</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Laminación, extrusión y trefilado</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Conformado de chapa y procesos de alta energía</a><div class="grp">Fusión</div><a href="tema-08.html" style="--tc:var(--c1)">T8 Conformado por fusión: fundición</a><div class="grp">Unión</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Procesos de unión: soldadura</a><div class="grp">CNC</div><a href="tema-10.html" style="--tc:var(--c3)">T10 Control numérico: programación de torno y fresadora</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)" class="on" aria-current="page">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas de CNC</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)"><div class="sh"><span aria-hidden="true" class="badge">Ex</span><div class="shx"><p class="kick">Practicar · Problemas</p><h2 id="exam">Los problemas del examen, resueltos</h2><div class="tags"><span class="tag">8 problemas tipo</span><span class="tag w">con esquemas completos</span></div></div></div>
+<div class="zero"><p class="ft">Cómo usarlos</p><p>Los exámenes repiten un puñado de tipos: forja, laminación, trefilado, selección de proceso y programación CNC. Estos ocho los cubren, e incluyen los dos <b>parciales de 2020</b>. <b>Resuélvelos en papel</b> antes de abrir la solución.</p></div><div class="prob"><h3 class="ph" id="ex1">Problema 1 · Forja de un cilindro: tensión, trabajo e inestabilidad <span class="tag">tipo</span> <a class="tag" href="tema-05.html">T5</a></h3><div class="enun"><p class="et">Enunciado</p>Un cilindro de <b>D₁ = 30 mm</b> y <b>h₁ = 25 mm</b> se forja hasta <b>h₂ = ¾ h₁</b>. El material responde a \(\sigma=200\,\varepsilon^{0{,}35}\) N/mm². Calcula <b>a)</b> la tensión verdadera al final, <b>b)</b> la tensión nominal, <b>c)</b> el trabajo necesario y <b>d)</b> el trabajo que haría falta para alcanzar la inestabilidad.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Tensión verdadera.</b> Sólo hay fuerza en la dirección 3, que es principal, de modo que \(\sigma_1=\sigma_2=0\).</p>
+\[h_2=\tfrac34\cdot25=18{,}75\ \text{mm}\qquad\varepsilon_3=\ln\frac{h_2}{h_1}=\ln\frac{18{,}75}{25}=-0{,}288\]
+\[\boxed{\sigma_3=200\cdot0{,}288^{0{,}35}=129{,}4\ \text{N/mm}^2}\]
+<p><b>b) Tensión nominal.</b> Se refiere al área inicial. Por constancia de volumen:</p>
+\[A_1h_1=A_2h_2\ \Rightarrow\ \frac{A_2}{A_1}=\frac{h_1}{h_2}\]
+\[\sigma_{nom}=\frac{F}{A_1}=\frac{F}{A_2}\cdot\frac{A_2}{A_1}=\sigma_3\frac{h_1}{h_2}=129{,}4\cdot\frac{25}{18{,}75}=\boxed{172{,}5\ \text{N/mm}^2}\]
+<p><b>c) Trabajo necesario.</b> En un recalcado axisimétrico, \(\varepsilon_{eq}=|\varepsilon_3|\):</p>
+\[W=V\!\int_0^{|\varepsilon_3|}\!\!\sigma\,d\varepsilon=\frac{\pi D_1^{2}}{4}h_1\!\int_0^{0{,}288}\!\!200\,\varepsilon^{0{,}35}\,d\varepsilon\]
+\[V=\frac{\pi\cdot30^{2}}{4}\cdot25=17\,671{,}5\ \text{mm}^3\qquad\int_0^{0{,}288}\!\!200\,\varepsilon^{0{,}35}d\varepsilon=\frac{200\cdot0{,}288^{1{,}35}}{1{,}35}=27{,}56\]
+\[\boxed{W=17\,671{,}5\cdot27{,}56\cdot10^{-3}=487{,}7\ \text{J}}\]
+<p><b>d) Trabajo hasta la inestabilidad.</b> La inestabilidad ocurre cuando \(d\sigma/d\varepsilon=\sigma\), que para el modelo potencial da \(\varepsilon=n\):</p>
+\[W_{in}=V\!\int_0^{n}\!\!\sigma\,d\varepsilon=17\,671{,}5\cdot\frac{200\cdot0{,}35^{1{,}35}}{1{,}35}\cdot10^{-3}=\boxed{634{,}6\ \text{J}}\]
+<div class="box key"><p><b>Las dos comprobaciones que salvan el ejercicio.</b> Primera: \(\sigma_{nom}>\sigma_3\) siempre en forja, porque la sección crece. Segunda: el factor \(10^{-3}\) al pasar de N·mm a julios. Lo demás es integrar una potencia.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex2">Problema 2 · Forja de un prisma: deformación equivalente <span class="tag">tipo</span> <a class="tag" href="tema-05.html">T5</a></h3><div class="enun"><p class="et">Enunciado</p>Un prisma de base cuadrada de lado <b>l₀ = 20 mm</b> y altura <b>h₀ = 30 mm</b> se forja hasta <b>h_f = 25 mm</b> con un material de \(\sigma=100\,\varepsilon^{0{,}4}\) N/mm². Calcula las deformaciones logarítmicas y la equivalente, las tensiones reales y la nominal.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Deformaciones logarítmicas.</b> Por constancia de volumen, \(l_0^2h_0=l_f^2h_f\):</p>
+\[l_f=l_0\sqrt{\frac{h_0}{h_f}}=20\sqrt{\frac{30}{25}}=\boxed{21{,}91\ \text{mm}}\]
+\[\varepsilon_1=\ln\frac{l_f}{l_0}=\boxed{0{,}091}\qquad\varepsilon_2=\ln\frac{l_f}{l_0}=\boxed{0{,}091}\qquad\varepsilon_3=\ln\frac{h_f}{h_0}=\boxed{-0{,}182}\]
+<p><b>Deformación equivalente.</b></p>
+\[\varepsilon_{eq}=\sqrt{\tfrac23\left(\varepsilon_1^2+\varepsilon_2^2+\varepsilon_3^2\right)}=\sqrt{\tfrac23\left(0{,}091^2+0{,}091^2+0{,}182^2\right)}=\boxed{0{,}182}=|\varepsilon_3|\]
+<p><b>Por qué sale exactamente \(|\varepsilon_3|\).</b> Vale la pena demostrarlo, porque sirve para todos los recalcados. Con \(\varepsilon_1=\varepsilon_2\) y \(\varepsilon_1+\varepsilon_2+\varepsilon_3=0\), se tiene \(\varepsilon_1=-\varepsilon_3/2\), y sustituyendo:</p>
+\[\varepsilon_{eq}=\sqrt{\tfrac23\left(\tfrac{\varepsilon_3^2}{4}+\tfrac{\varepsilon_3^2}{4}+\varepsilon_3^2\right)}=\sqrt{\tfrac23\cdot\tfrac32\,\varepsilon_3^2}=|\varepsilon_3|\]
+<p><b>b) Tensiones reales.</b> Sólo habrá tensión en el eje 3, donde hay fuerza:</p>
+\[\sigma_3=100\cdot|{-}0{,}182|^{0{,}4}=\boxed{50{,}6\ \text{N/mm}^2}\]
+<p>Como \(F_1=F_2=0\), resulta \(\boxed{\sigma_1=\sigma_2=0}\).</p>
+<p><b>c) Tensión nominal.</b></p>
+\[\sigma_{nom}=\frac{F}{A_0}=\frac{F}{A_f}\cdot\frac{A_f}{A_0}=\sigma_3\frac{l_f^2}{l_0^2}=50{,}6\cdot\frac{21{,}91^{2}}{20^{2}}=\boxed{60{,}7\ \text{N/mm}^2}\]
+<div class="box key"><p><b>El atajo que hay que demostrar una vez y usar siempre.</b> En cualquier recalcado con base cuadrada o circular, \(\varepsilon_{eq}=|\varepsilon_3|\). Comprobarlo con la fórmula completa en el examen cuesta dos líneas y garantiza que no hay error de signo en ninguna deformación.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex3">Problema 3 · Parcial 2020: forja con fuerza y trabajo <span class="tag">2020</span> <a class="tag" href="tema-04.html">T4</a></h3><div class="enun"><p class="et">Enunciado</p><b>Parcial 2020.</b> Un prisma de base cuadrada \(l_0=20\) mm y altura \(h_0=45\) mm se forja hasta \(h_f=0{,}75\,h_0\). El material responde a \(\sigma=300\,\varepsilon^{0{,}37}\) N/mm². Calcula las deformaciones y la equivalente, las tensiones reales, la fuerza y el trabajo.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Deformaciones.</b> Partiendo de \(d\varepsilon=dl/l\), que integrando da \(\varepsilon=\ln(l_f/l_0)\). Por constancia de volumen, \(l_0^2h_0=l_f^2h_f\):</p>
+\[h_f=0{,}75\cdot45=33{,}75\ \text{mm}\qquad l_f=l_0\sqrt{\frac{h_0}{h_f}}=20\sqrt{\frac{45}{33{,}75}}=\boxed{23{,}094\ \text{mm}}\]
+\[\varepsilon_1=\varepsilon_2=\ln\frac{23{,}094}{20}=\boxed{0{,}1438}\qquad\varepsilon_3=\ln\frac{33{,}75}{45}=\boxed{-0{,}2877}\]
+\[\varepsilon_{eq}=\sqrt{\tfrac23\left(0{,}1438^2+0{,}1438^2+0{,}2877^2\right)}=\boxed{0{,}2877}=|\varepsilon_3|\]
+<p><b>b) Tensiones reales.</b> Sólo hay tensión en el eje 3. Como \(F_1=F_2=0\):</p>
+\[\sigma_1=\sigma_2=0\qquad\sigma_3=300\cdot0{,}2877^{0{,}37}=\boxed{189{,}2\ \text{N/mm}^2}\]
+<p><b>c) Fuerza.</b> Sobre la sección <b>final</b>, que es la que soporta la carga al terminar el proceso:</p>
+\[F=\sigma_3\,l_f^2=189{,}2\cdot23{,}094^{2}=189{,}2\cdot533{,}3=\boxed{100{,}9\ \text{kN}}\]
+<p><b>d) Trabajo.</b></p>
+\[V=l_0^2h_0=20^2\cdot45=18\,000\ \text{mm}^3\]
+\[\frac{W}{V}=\int_0^{0{,}2877}\!\!300\,\varepsilon^{0{,}37}\,d\varepsilon=\frac{300\cdot0{,}2877^{1{,}37}}{1{,}37}=39{,}73\ \text{MJ/m}^3\]
+\[W=18\,000\cdot39{,}73\cdot10^{-3}=\boxed{715\ \text{J}}\]
+<p><b>e) Tensión nominal</b>, por si la piden:</p>
+\[\sigma_{nom}=\sigma_3\frac{l_f^2}{l_0^2}=189{,}2\cdot\frac{533{,}3}{400}=\boxed{252{,}3\ \text{N/mm}^2}\]
+<div class="box trap"><h4>El error que cuesta la prensa</h4><p>Si la fuerza se calcula con la sección <b>inicial</b> (400 mm²) salen <b>75,7 kN</b>: un 25 % por debajo. Una prensa dimensionada con ese número se queda corta justo al final del proceso, que es cuando más fuerza hace falta.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex4">Problema 4 · Laminación en deformación plana <span class="tag">tipo</span> <a class="tag" href="tema-06.html">T6</a></h3><div class="enun"><p class="et">Enunciado</p>Una chapa de <b>b = 200 mm</b> de ancho se lamina de <b>e₁ = 5 mm</b> a <b>e₂ = 4 mm</b> con cilindros de <b>R = 250 mm</b>. El material responde a \(\sigma=300\,\varepsilon^{0{,}37}\) MPa. Calcula la fuerza de laminación y las tres tensiones principales.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>1) El estado es de deformación plana.</b> La chapa es muy ancha comparada con su espesor, así que el ancho no cambia: \(\varepsilon_2=0\) y, por constancia de volumen, \(\varepsilon_1=-\varepsilon_3\). Todo lo que se pierde en espesor se gana en longitud.</p>
+<p><b>2) Deformación y tensión equivalente.</b></p>
+\[\varepsilon=\ln\frac{e_1}{e_2}=\ln\frac{5}{4}=0{,}2231\qquad\sigma_{eq}=300\cdot0{,}2231^{0{,}37}=\boxed{172{,}2\ \text{MPa}}\]
+<p><b>3) Área de contacto.</b> No es la sección de la chapa, sino la <b>proyección del arco de contacto</b> con el cilindro:</p>
+\[L=\sqrt{R^{2}-\left(R-\tfrac{\Delta e}{2}\right)^{2}}\approx\sqrt{R\,\Delta e}=\sqrt{250\cdot1}=15{,}81\ \text{mm}\]
+\[A=b\,L=200\cdot15{,}81=3162\ \text{mm}^2\]
+<p><b>4) Fuerza.</b> En deformación plana, Von Mises da \(\sigma_{eq}=\frac{\sqrt3}{2}\frac{F}{A}\), de donde:</p>
+\[F=\frac{2}{\sqrt3}\,\sigma_{eq}\,b\sqrt{R\,\Delta e}=\frac{2}{\sqrt3}\cdot172{,}2\cdot3162=\boxed{629\ \text{kN}}\]
+<p><b>5) Tensiones principales.</b></p>
+\[\sigma_1\approx0\ \text{(dirección de avance, libre)}\]
+\[\sigma_3=-\frac{F}{A}=-\frac{629\,000}{3162}=\boxed{-198{,}9\ \text{MPa}}\]
+<p>Y la intermedia, por estar en deformación plana:</p>
+\[\sigma_2=\frac{\sigma_1+\sigma_3}{2}=\frac{0-198{,}9}{2}=\boxed{-99{,}4\ \text{MPa}}\]
+<p><b>6) Comprobación con Von Mises.</b></p>
+\[\sigma_e=\sqrt{\tfrac12\left[(0+99{,}4)^2+(-99{,}4+198{,}9)^2+(-198{,}9-0)^2\right]}=172{,}2\ \text{MPa}\quad\checkmark\]
+<div class="box key"><p><b>El factor que se olvida.</b> El \(2/\sqrt3=1{,}155\) de la fuerza viene de que en <b>deformación plana</b> la tensión equivalente no es la tensión aplicada, sino \(\frac{\sqrt3}{2}\) de ella. Sin ese factor la fuerza sale un <b>15 % baja</b>, y el tren de laminación elegido no da la reducción.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex5">Problema 5 · Trefilado: reducción máxima por pasada <span class="tag">tipo</span> <a class="tag" href="tema-06.html">T6</a></h3><div class="enun"><p class="et">Enunciado</p>Un alambre de <b>D₀ = 10 mm</b> se trefila. El material responde a \(\sigma=600\,\varepsilon^{0{,}25}\) MPa y el rendimiento de la hilera es <b>η = 0,8</b>. Calcula el diámetro mínimo alcanzable en una pasada, la reducción de sección y cuántas pasadas harían falta para llegar a 1 mm.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>1) El límite físico.</b> En trefilado se <b>tira</b> del alambre: la fuerza se transmite por el material ya conformado. La tensión de estirado no puede superar la tensión de fluencia del alambre a la salida.</p>
+\[\sigma_R=\frac{1}{\eta}\cdot\frac{C}{n+1}\,\varepsilon^{\,n+1}\qquad\sigma_{salida}=C\,\varepsilon^{\,n}\]
+<p><b>2) La condición límite.</b> Igualando:</p>
+\[\frac{1}{\eta}\cdot\frac{C}{n+1}\,\varepsilon^{\,n+1}=C\,\varepsilon^{\,n}\ \Longrightarrow\ \boxed{\varepsilon_{\max}=\eta\,(n+1)}\]
+<p>Un resultado que no depende de C: sólo del exponente de endurecimiento y del rendimiento.</p>
+\[\varepsilon_{\max}=0{,}8\cdot1{,}25=\boxed{1{,}00}\]
+<p><b>3) Diámetro mínimo.</b> Como \(\varepsilon=\ln(A_0/A_f)=2\ln(D_0/D_f)\):</p>
+\[D_{f,\min}=D_0\,e^{-\varepsilon_{\max}/2}=10\cdot e^{-0{,}5}=\boxed{6{,}07\ \text{mm}}\]
+<p><b>4) Reducción de sección.</b></p>
+\[r=\frac{D_0^{2}-D_f^{2}}{D_0^{2}}=\frac{100-36{,}8}{100}=\boxed{63{,}2\ \%}\]
+<p>Comprobación con la otra expresión del formulario: \(\varepsilon=\ln\frac{1}{1-r}=\ln\frac{1}{0{,}368}=1{,}00\) ✓</p>
+<p><b>5) Pasadas hasta 1 mm.</b> Cada pasada multiplica el diámetro por \(e^{-0{,}5}=0{,}6065\):</p>
+<div class="tw"><table><tr><th>Pasada</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+<tr><td>⌀ (mm)</td><td>10</td><td>6,07</td><td>3,68</td><td>2,23</td><td>1,35</td><td><b>0,82</b></td></tr></table></div>
+<p>Con <b>cinco pasadas</b> se pasa de 10 mm a menos de 1 mm, si cada una aprovechara el límite teórico. También se puede plantear directamente:</p>
+\[N=\frac{2\ln(D_0/D_{objetivo})}{\varepsilon_{\max}}=\frac{2\ln10}{1}=4{,}6\ \Rightarrow\ \boxed{5\ \text{pasadas}}\]
+<div class="box trap"><h4>Lo que pasa en la práctica</h4><p>No se trabaja al límite: se deja un margen de seguridad y se reduce entre el 20 y el 30 % por pasada, así que harían falta <b>ocho o diez</b>. Y entre ellas hacen falta <b>recocidos</b>, porque el material endurece y el \(n\) efectivo cae, lo que baja a su vez el límite de reducción de la pasada siguiente. Mencionarlo demuestra que se entiende el cálculo, no sólo que se sabe hacerlo.</p></div>
+<p><b>Comparación con el caso ideal.</b> Con \(\eta=1\) sería \(\varepsilon_{\max}=n+1=1{,}25\) y \(D_{f,\min}=10\cdot e^{-0{,}625}=5{,}35\) mm. El rozamiento de la hilera cuesta <b>0,7 mm de diámetro</b> por pasada: ése es el valor económico de una buena lubricación.</p></div></details></div><div class="prob"><h3 class="ph" id="ex6">Problema 6 · Selección de proceso y punto de equilibrio <span class="tag">tipo</span> <a class="tag" href="tema-07.html">T7</a></h3><div class="enun"><p class="et">Enunciado</p>Hay que fabricar un <b>panel de fuselaje de 3 metros</b> con doble curvatura en aleación de aluminio. Analiza las alternativas y elige el proceso para una serie de <b>25 unidades</b> y para una de <b>10 000</b>.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>1) Alternativas viables.</b></p>
+<div class="tw"><table><tr><th>Proceso</th><th>Utillaje</th><th>Operación</th></tr>
+<tr><td>Embutición con matriz</td><td>punzón + matriz de 3 m y prensa de miles de toneladas: ≈ 300 000 €</td><td>≈ 200 €/pieza</td></tr>
+<tr><td><b>Estirado de chapa</b></td><td>una matriz simple y dos mordazas: ≈ 30 000 €</td><td>≈ 600 €/pieza</td></tr>
+<tr><td>Conformado explosivo</td><td>matriz y balsa: ≈ 50 000 €</td><td>≈ 900 €/pieza</td></tr>
+</table></div>
+<p><b>2) Punto de equilibrio entre las dos primeras.</b></p>
+\[300\,000+200N=30\,000+600N\ \Rightarrow\ N=\frac{270\,000}{400}=\boxed{675\ \text{unidades}}\]
+<p><b>3) Con 25 unidades: estirado de chapa.</b></p>
+\[\text{Embutición: }300\,000+5000=305\,000\ \text{€}\qquad\text{Estirado: }30\,000+15\,000=\boxed{45\,000\ \text{€}}\]
+<p>Siete veces más barato. Además, el estirado trabaja por <b>tracción</b>, lo que reparte la deformación más uniformemente y evita las arrugas típicas de la embutición en paneles grandes. Y es justamente para lo que existe: <b>industria aeronáutica, gran tamaño, pequeños lotes</b>.</p>
+<p><b>4) Con 10 000 unidades: embutición.</b></p>
+\[\text{Embutición: }300\,000+2\,000\,000=\boxed{2{,}3\ \text{M€}}\qquad\text{Estirado: }30\,000+6\,000\,000=6{,}03\ \text{M€}\]
+<p>Por encima de 675 unidades el utillaje se amortiza y manda el coste de operación.</p>
+<p><b>5) Lo que hay que prever en cualquiera de los dos casos.</b></p>
+<ul>
+<li><b>Recuperación elástica</b>: con doble curvatura no es uniforme. Se compensa sobredoblando la matriz y se ajusta con las primeras piezas.</li>
+<li><b>Adelgazamiento</b>: al estirar, la chapa pierde espesor. Hay que partir de un espesor mayor y comprobar el mínimo en la zona de mayor curvatura.</li>
+<li><b>Estado del material</b>: conformar en estado recocido y aplicar el tratamiento de endurecimiento después.</li>
+</ul>
+<div class="box key"><p><b>La lección general.</b> Los tres procesos <b>pueden hacer la pieza</b>: la geometría no decide. Lo que decide es la <b>serie</b>, y por eso un problema de selección de procesos se responde con un punto de equilibrio, no con una lista de ventajas.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex7">Problema 7 · Elección de proceso de unión <span class="tag">tipo</span> <a class="tag" href="tema-09.html">T9</a></h3><div class="enun"><p class="et">Enunciado</p>Elige y justifica el proceso de unión para: <b>a)</b> un recipiente a presión de acero inoxidable de 8 mm con cordones circunferenciales y exigencia de estanqueidad, serie de 500 unidades al año; y <b>b)</b> una placa de aluminio sobre una base de acero.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><p><b>a) Recipiente de acero inoxidable.</b></p>
+<div class="tw"><table><tr><th>Proceso</th><th>Veredicto</th></tr>
+<tr><td>Electrodo revestido</td><td><b>Descartado</b>: es difícilmente automatizable, deja escoria que hay que eliminar entre pasadas y exige abundante mano de obra. Para 500 unidades al año sale caro.</td></tr>
+<tr><td>TIG</td><td>Máxima calidad, pero lento. <b>Reservado para la pasada de raíz</b>, donde la penetración y la limpieza son críticas.</td></tr>
+<tr><td><b>MIG</b> (gas inerte)</td><td><b>Elegido para el relleno</b>: automatizable, alta tasa de deposición y sin contaminación.</td></tr>
+<tr><td>Arco sumergido</td><td>Alternativa muy buena al ser cordones <b>largos y circunferenciales</b>: el recipiente gira sobre rodillos y el flux protege. Más productividad, más instalación.</td></tr>
+</table></div>
+<p><b>Solución: raíz en TIG y relleno en MIG</b>, con posicionador giratorio. Es la práctica estándar en recipientes a presión.</p>
+<p><b>Por qué gas inerte y no activo (MAG).</b> El MAG usa CO₂ o mezclas con CO₂, que <b>aportan carbono</b> al baño. En un inoxidable austenítico, ese carbono precipita como <b>carburos de cromo</b> en los bordes de grano; el entorno queda empobrecido en cromo y aparece <b>corrosión intergranular</b>, justo en la zona afectada por el calor. En inoxidable, gas inerte siempre.</p>
+<p><b>Control del aporte térmico.</b> Con 8 mm hacen falta varias pasadas y hay que limitar el calor acumulado:</p>
+\[HI=\frac{\eta\,V\,I}{v}\]
+<p>Un aporte excesivo engorda la zona afectada y deforma el recipiente; uno insuficiente da falta de fusión. Se controla con la velocidad de avance y con una temperatura máxima entre pasadas.</p>
+<p><b>b) Aluminio sobre acero.</b></p>
+<p><b>Por fusión es inviable</b>: al fundir se forman compuestos intermetálicos Fe-Al <b>frágiles</b> que arruinan la unión. Hay que unir <b>en estado sólido</b>:</p>
+<div class="tw"><table><tr><th>Proceso</th><th>Cómo funciona</th></tr>
+<tr><td><b>Soldadura por explosión</b></td><td>La detonación de una carga colocada adecuadamente obliga a uno de los metales a proyectarse aceleradamente sobre el otro, impactando a cierta velocidad y bajo un determinado ángulo. Es la técnica del temario para <b>placas bimetálicas y uniones aluminio-acero</b>.</td></tr>
+<tr><td><b>Soldadura por fricción</b></td><td>El calor del rozamiento y la presión unen sin llegar a fundir. Para piezas de revolución, o chapas en su versión <i>friction stir</i>.</td></tr>
+<tr><td><b>Transición bimetálica</b></td><td>Una placa bimetálica fabricada por explosión, soldada después por fusión al acero por su cara de acero y al aluminio por su cara de aluminio. Es la solución de la construcción naval.</td></tr>
+</table></div>
+<div class="box key"><p><b>La regla.</b> Cuando dos materiales no pueden fundirse juntos sin formar fases frágiles, la respuesta nunca es «soldar con más cuidado»: es <b>no fundirlos</b>.</p></div></div></details></div><div class="prob"><h3 class="ph" id="ex8">Problema 8 · Parcial 2: programación CNC de un perfil en torno <span class="tag">2020</span> <a class="tag" href="tema-10.html">T10</a></h3><div class="enun"><p class="et">Enunciado</p><b>Parcial 2 · Programación CNC.</b> Partiendo de un bruto de <b>⌀66</b>, escribe el programa para refrentar y obtener un perfil con un tramo recto a ⌀20 hasta Z−22, un arco a derechas hasta ⌀30 en Z−30,66, un arco a izquierdas hasta ⌀50 en Z−47,98 y tramos rectos hasta ⌀60 y Z−65. Usa el ciclo <b>G68</b> para el desbastado.</div><details class="paso"><summary><span class="pn">✓</span>Solución completa</summary><div class="inner"><div class="code">N10  G53 X0 Z65                        (carga del origen pieza)
+N20  G53                               (decalaje)
+N30  G0 G71 G90 G95 G97 X100 Z100 F0.09 S850 M03 M41
+N40  T1.3                              (herramienta de desbaste)
+N50  G0 X66 Z0                         (posicionamiento de refrentado)
+N60  G1 X0 Z0                          (REFRENTADO)
+N70  G0 G96 X66 Z1 F0.11 S60           (posicionamiento para el ciclo)
+N80  G68 P0=K0 P1=K0 P5=K0.7 P7=K0.3 P8=K0.3 P9=K0 P13=K110 P14=K170
+                                       (CICLO DE DESBASTE)
+N90  G0 G97 X100 Z100 F0.05 S1200 T2.4 (ACABADO)
+N100 G0 X0 Z0
+N110 G1 X20 Z0                         (inicio del perfil)
+N120 G1 X20 Z-22
+N130 G2 X30 Z-30.66 I10 K0
+N140 G3 X50 Z-47.98 I-10 K-17.32
+N150 G1 X50 Z-54
+N160 G1 X60 Z-54
+N170 G1 X60 Z-65                       (fin del perfil)
+N180 G0 X100 Z100 M30                  (fin del programa)</div>
+<p><b>Las decisiones que hay que justificar.</b></p>
+<div class="tw"><table><tr><th>Bloque</th><th>Decisión y razón</th></tr>
+<tr><td>N30</td><td><b>G71</b> milímetros, <b>G90</b> absolutas, <b>G95</b> mm/revolución y <b>G97</b> rpm constantes. Olvidar G71 destroza la pieza.</td></tr>
+<tr><td>N60</td><td>Refrentado <b>con G97</b>: si se usara G96, al acercarse a X0 las revoluciones tenderían a infinito.</td></tr>
+<tr><td>N70</td><td>Se cambia a <b>G96</b> para el desbaste: así la velocidad de corte real se mantiene constante entre ⌀66 y ⌀20, que es lo que determina el desgaste de la plaquita.</td></tr>
+<tr><td>N80</td><td><b>P13 = 110 y P14 = 170</b> son los números de bloque donde empieza y acaba el perfil: el ciclo los lee y genera las pasadas de desbaste. <b>P7 = P8 = 0,3</b> son las creces que deja para el acabado.</td></tr>
+<tr><td>N90</td><td>Herramienta <b>T2.4</b> de acabado, con menor avance (0,05 frente a 0,11) y mayor velocidad (1200 frente a 850): eso da el acabado superficial.</td></tr>
+<tr><td>N130-N140</td><td><b>I y K son el centro del arco respecto al punto de inicio</b>, medidos <b>en radio</b> aunque las X vayan en diámetro.</td></tr>
+</table></div>
+<p><b>La comprobación de los arcos.</b> La distancia del centro al punto inicial debe ser igual que al final:</p>
+<div class="code">N130 · inicio radio 10, Z = −22   ·   I = 10, K = 0
+     centro: radio 10 + 10 = 20, Z = −22
+     al inicio: √(10² + 0²)        = 10
+     al final:  √((20−15)² + 8,66²) = √(25 + 75) = 10   ✓   R = 10
+
+N140 · inicio radio 15, Z = −30,66   ·   I = −10, K = −17,32
+     centro: radio 15 − 10 = 5, Z = −30,66 − 17,32 = −47,98
+     al inicio: √(10² + 17,32²) = √(100 + 300) = 20
+     al final:  √((25−5)² + 0²)  = 20                  ✓   R = 20</div>
+<p>Los dos arcos cierran. Si no cerraran, el control daría error de geometría al ejecutar.</p>
+<div class="box key"><p><b>Lo que más puntúa en un programa de examen.</b> Los <b>comentarios entre paréntesis</b>. Demuestran que se sabe qué hace cada bloque y permiten dar por buena una coordenada mal calculada si el razonamiento está escrito al lado. Un programa correcto pero mudo puntúa menos que uno comentado con un fallo.</p></div></div></details></div>
+<figure class="fig"><p class="ft">Calculadora interactiva · forja</p><div data-sim="forja"></div><figcaption>Comprueba los problemas 1 a 3: pon l₀ = 20, h₀ = 45 y una reducción del 25 % y saldrán 189,2 MPa y 100,9 kN.</figcaption></figure>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="cuestiones.html"><small>← Anterior</small>Teoría</a><a class="nx" href="problemas.html"><small>Siguiente →</small>Qué cae en el examen</a></nav><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Ingeniería de los Sistemas de Producción (UPCT, GIEyA) · Datos tomados del curso <time datetime="2019-09">2019/20</time> (apuntes completos de la asignatura, formulario, parciales de 2020 resueltos y memorias de las prácticas de control numérico) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
