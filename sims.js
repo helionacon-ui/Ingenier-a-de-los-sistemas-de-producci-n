@@ -651,5 +651,27 @@ SIMS.cnc=el=>build(el,{w:680,h:330,
    ? 'El <b>ciclo G68</b> sustituye una decena de bloques de pasadas de ida y vuelta. P13 y P14 son los <b>números de bloque</b> donde empieza y acaba el perfil que el ciclo debe desbastar, y P7 y P8 las creces que deja para el acabado.'
    : 'En torno la cota <b>X se programa en diámetro</b>: para dejar la pieza a 10 mm de radio se escribe X20. Programar el radio deja la pieza al doble de lo previsto, y es un error que no da aviso: el programa se ejecuta sin problemas.'))));
  }});
-  document.querySelectorAll('[data-sim]').forEach(function(el){var k=el.getAttribute('data-sim'); if(SIMS[k]){ try{ SIMS[k](el); }catch(e){ console.error('sim '+k, e); } }});
+  
+
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 realesPaso ---- */
+SIMS.realesPaso=el=>SIMS.__paso(el,{"w":660,"h":330,"q":"Se ensaya una probeta y se mide su alargamiento con una fuerza dada. ¿Cuáles son la tensión y la deformación reales, y en qué se diferencian de las de ingeniería? Sube el paso.","base":[["t","Probeta: L₀ = 50 mm · A₀ = 80 mm² · F = 12 kN · L = 56 mm",30,26,13,"left"]],"steps":[{"text":"Una probeta de <b>50 mm</b> y sección <b>80 mm²</b> soporta una fuerza de <b>12 kN</b> y se alarga hasta <b>56 mm</b>. Se pide la tensión y la deformación <b>reales</b> (suponiendo volumen constante).","add":[]},{"text":"Valores de <b>ingeniería</b>: <b>e = (L − L₀)/L₀ = 6/50 = 0,12</b> (12 %) y <b>σ_ing = F/A₀ = 12000/80 = 150 MPa</b>.","add":[["t","e = ΔL/L₀ = 6/50 = 0,12",40,80,15,"left"],["t","σ_ing = F/A₀ = 150 MPa",40,110,15,"left"]]},{"text":"La sección real ya no es A₀: con <b>volumen constante</b> (A·L = A₀·L₀), <b>A = A₀/(1+e) = 80/1,12 = 71,4 mm²</b>. La probeta se ha estrechado.","add":[["t","A = A₀/(1+e) = 71,4 mm²",40,150,15,"left"]]},{"text":"Tensión real: <b>σ = F/A = σ_ing·(1+e) = 150 · 1,12 = 168 MPa</b>. Es mayor que la de ingeniería porque la fuerza se reparte en menos área.","add":[["t","σ = σ_ing(1+e) = 168 MPa",40,180,15,"left"],["r",330,250,200.0,26,1],["t","σ ing. 150",322,269,13,"right"],["r",330,284,224.0,26,1],["t","σ real 168",322,303,13,"right"]]},{"text":"Deformación real: <b>ε = ln(1+e) = ln 1,12 = 0,1133</b> (11,33 %). Es menor que e = 12 %, y la diferencia crece al aumentar la deformación.","add":[["t","ε = ln(1+e) = 0,1133",40,210,15,"left"]]},{"text":"Comprobación con la definición: ε = ln(L/L₀) = ln(56/50) = <b>0,1133</b> ✓. Para deformaciones pequeñas (e &lt; 2 %) ambas medidas casi coinciden; en conformado, con deformaciones grandes, hay que usar las reales.","add":[]}]});
+/* ---- fin paso2 realesPaso ---- */
+document.querySelectorAll('[data-sim]').forEach(function(el){var k=el.getAttribute('data-sim'); if(SIMS[k]){ try{ SIMS[k](el); }catch(e){ console.error('sim '+k, e); } }});
 })();
