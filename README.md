@@ -1,4 +1,4 @@
-# Ingeniería de los Sistemas de Producción · Guía para aprobar
+# Ingeniería de los Sistemas de Producción · Apuntes
 
 Guía de estudio no oficial de **Ingeniería de los Sistemas de Producción** (Grado en Ingeniería Electrónica y Automática), construida a partir del material de la asignatura: apuntes completos, formulario, los parciales de 2020 resueltos y las memorias de las prácticas de control numérico.
 
