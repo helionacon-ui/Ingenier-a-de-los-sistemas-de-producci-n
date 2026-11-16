@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,12 +86,12 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
 <div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">Deformación · Tema 2</p><h2 id="t2">Deformación plástica y temperatura</h2><div class="tags"><span class="tag">Deformación</span><span class="tag">Teoría</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Decidir si un proceso se hace en frío, en tibio o en caliente, y saber qué se gana y qué se pierde en cada caso.</p><p class="ft">Lo que cambia al subir la temperatura</p><p>Tres efectos, encadenados:</p><ul><li>Baja la <b>tensión de fluencia</b> → hace falta <b>menos energía</b> y máquinas menos potentes.</li><li>Baja el <b>endurecimiento por deformación</b> → se pueden conseguir deformaciones mucho mayores sin romper.</li><li>Sube la <b>agitación atómica</b> → menor resistencia de los granos y de sus bordes.</li></ul><p>A cambio se pierden acabado, tolerancias y se paga en oxidación y en coste de máquina.</p><p class="ft">Las dos temperaturas de referencia</p><p>Todo el tema se organiza en torno a dos temperaturas, <b>siempre expresadas en kelvin</b> y como fracción de la de fusión:</p><div class="tw"><table><tr><th>Temperatura</th><th>Valor</th><th>Qué ocurre</th></tr><tr><td><b>Restauración</b></td><td>\(<0{,}3\,T_f\)</td><td>los átomos vuelven a posiciones de equilibrio en el contorno de los granos, <b>sin movimiento aparente</b>; disminuyen las tensiones internas, pero la estructura cristalina no cambia</td></tr><tr><td><b>Recristalización</b></td><td>\(0{,}3\ \text{a}\ 0{,}5\,T_f\)</td><td>se forman <b>cristales nuevos</b> a partir de los granos deformados, sustituyendo a la red deformada</td></tr></table></div><p>Y con ellas se definen los cuatro regímenes de trabajo.</p><p class="ft">Los cuatro regímenes</p><div class="tw"><table><tr><th>Régimen</th><th>Rango</th><th>Características</th></tr><tr><td><b>Frío</b></td><td>ambiente &lt; T &lt; restauración</td><td>No hay cambios en la estructura cristalina. Aparece <b>endurecimiento por deformación</b>: cuanto más se deforma, más fuerza hace falta para seguir deformando. Eso produce <b>pérdida de ductilidad</b> y <b>tensiones residuales</b> de tracción en la superficie.</td></tr><tr><td><b>Tibio</b></td><td>restauración &lt; T &lt; recristalización</td><td>Compromiso: se reducen los esfuerzos y el consumo, son posibles mayores deformaciones y se reduce la necesidad de recocido, sin llegar a los inconvenientes del caliente.</td></tr><tr><td><b>Caliente</b></td><td>recristalización &lt; T &lt; fusión</td><td>Misma deformación con mucho menos esfuerzo, grano más fino, <b>ausencia de tensiones residuales</b> y estructura uniforme. A cambio: oxidación rápida, alta rugosidad, tolerancias amplias y maquinaria más cara.</td></tr><tr><td><b>Isotermo</b></td><td>T constante</td><td>Las <b>herramientas se calientan a la temperatura del material</b>. Para materiales con alta dureza en caliente (aleaciones de Ni y Ti), donde el contacto con una herramienta fría crearía grandes gradientes y tensiones residuales.</td></tr></table></div><p class="ft">Las tensiones residuales y el recocido</p><p>En frío, el endurecimiento por deformación deja <b>tensiones residuales de tracción</b> en la superficie, y eso trae consecuencias concretas: defectos superficiales, <b>menor resistencia a la fatiga</b> y favorecimiento de la corrosión.</p><p>La solución es un tratamiento térmico de <b>recocido</b> entre pasadas, que restaura la ductilidad y permite continuar deformando. Por eso las grandes deformaciones en frío se hacen <b>en varias etapas</b>, con recocidos intermedios.</p><p>Y un término que se pregunta: en frío aparece <b>anisotropía</b> (las propiedades dependen de la dirección, porque las fibras se orientan); lo contrario es <b>isotropía</b>.</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Decidir si un proceso se hace en frío, en tibio o en caliente, y saber qué se gana y qué se pierde en cada caso.</p><p class="ft">Lo que cambia al subir la temperatura</p><p class="lede">Tres efectos, encadenados:</p><ul><li>Baja la <b>tensión de fluencia</b> → hace falta <b>menos energía</b> y máquinas menos potentes.</li><li>Baja el <b>endurecimiento por deformación</b> → se pueden conseguir deformaciones mucho mayores sin romper.</li><li>Sube la <b>agitación atómica</b> → menor resistencia de los granos y de sus bordes.</li></ul><p>A cambio se pierden acabado, tolerancias y se paga en oxidación y en coste de máquina.</p><p class="ft">Las dos temperaturas de referencia</p><p>Todo el tema se organiza en torno a dos temperaturas, <b>siempre expresadas en kelvin</b> y como fracción de la de fusión:</p><div class="tw"><table><tr><th>Temperatura</th><th>Valor</th><th>Qué ocurre</th></tr><tr><td><b>Restauración</b></td><td>\(<0{,}3\,T_f\)</td><td>los átomos vuelven a posiciones de equilibrio en el contorno de los granos, <b>sin movimiento aparente</b>; disminuyen las tensiones internas, pero la estructura cristalina no cambia</td></tr><tr><td><b>Recristalización</b></td><td>\(0{,}3\ \text{a}\ 0{,}5\,T_f\)</td><td>se forman <b>cristales nuevos</b> a partir de los granos deformados, sustituyendo a la red deformada</td></tr></table></div><p>Y con ellas se definen los cuatro regímenes de trabajo.</p><p class="ft">Los cuatro regímenes</p><div class="tw"><table><tr><th>Régimen</th><th>Rango</th><th>Características</th></tr><tr><td><b>Frío</b></td><td>ambiente &lt; T &lt; restauración</td><td>No hay cambios en la estructura cristalina. Aparece <b>endurecimiento por deformación</b>: cuanto más se deforma, más fuerza hace falta para seguir deformando. Eso produce <b>pérdida de ductilidad</b> y <b>tensiones residuales</b> de tracción en la superficie.</td></tr><tr><td><b>Tibio</b></td><td>restauración &lt; T &lt; recristalización</td><td>Compromiso: se reducen los esfuerzos y el consumo, son posibles mayores deformaciones y se reduce la necesidad de recocido, sin llegar a los inconvenientes del caliente.</td></tr><tr><td><b>Caliente</b></td><td>recristalización &lt; T &lt; fusión</td><td>Misma deformación con mucho menos esfuerzo, grano más fino, <b>ausencia de tensiones residuales</b> y estructura uniforme. A cambio: oxidación rápida, alta rugosidad, tolerancias amplias y maquinaria más cara.</td></tr><tr><td><b>Isotermo</b></td><td>T constante</td><td>Las <b>herramientas se calientan a la temperatura del material</b>. Para materiales con alta dureza en caliente (aleaciones de Ni y Ti), donde el contacto con una herramienta fría crearía grandes gradientes y tensiones residuales.</td></tr></table></div><p class="ft">Las tensiones residuales y el recocido</p><p>En frío, el endurecimiento por deformación deja <b>tensiones residuales de tracción</b> en la superficie, y eso trae consecuencias concretas: defectos superficiales, <b>menor resistencia a la fatiga</b> y favorecimiento de la corrosión.</p><p>La solución es un tratamiento térmico de <b>recocido</b> entre pasadas, que restaura la ductilidad y permite continuar deformando. Por eso las grandes deformaciones en frío se hacen <b>en varias etapas</b>, con recocidos intermedios.</p><p>Y un término que se pregunta: en frío aparece <b>anisotropía</b> (las propiedades dependen de la dirección, porque las fibras se orientan); lo contrario es <b>isotropía</b>.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">9 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">Tf</td><td>temperatura de fusión</td><td class="u">K</td></tr><tr><td class="sym">T restauración</td><td>< 0,3·Tf</td><td class="u">K</td></tr><tr><td class="sym">T recristalización</td><td>0,3 a 0,5·Tf</td><td class="u">K</td></tr><tr><td class="sym">frío</td><td>ambiente a restauración</td><td class="u"></td></tr><tr><td class="sym">tibio</td><td>restauración a recristalización</td><td class="u"></td></tr><tr><td class="sym">caliente</td><td>recristalización a fusión</td><td class="u"></td></tr><tr><td class="sym">isotermo</td><td>T constante</td><td class="u">Ni, Ti</td></tr><tr><td class="sym">recocido</td><td>elimina tensiones residuales</td><td class="u"></td></tr><tr><td class="sym">anisotropía</td><td>la propiedad depende de la dirección</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - regimenes de temperatura de cada material</p><div data-sim="temperatura"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Trabajo en frío y en caliente</p><p>Cuando se deforma un metal, sus cristales se deforman y se «endurecen» (cada vez cuesta más deformarlos): es el <b>endurecimiento por deformación</b>, \(\sigma=C\varepsilon^n\). Calentando, los átomos se mueven y el metal se «cura» formando cristales nuevos: la <b>recristalización</b>. La frontera entre trabajar en frío y en caliente no es una temperatura fija, sino la temperatura de recristalización del material, que ronda el 30–50 % de su temperatura de fusión <b>medida en kelvin</b>. Por debajo: <b>frío</b> (endurece, buen acabado, tolerancias estrechas, mucha fuerza); por encima: <b>caliente</b> (no endurece, poca fuerza, mala tolerancia y óxido). El error más común del tema: olvidar pasar los grados centígrados a kelvin.</p><p class="ft">Cómo clasificar una temperatura de trabajo</p><p>Receta de tres pasos: <b>(1)</b> pasa \(T_f\) a kelvin (\(T[K]=T[°C]+273\)); <b>(2)</b> calcula \(0{,}3\,T_f\) y \(0{,}5\,T_f\); <b>(3)</b> compara la temperatura de trabajo (también en kelvin) con esa franja: por debajo ⇒ trabajo en <b>frío</b>; dentro ⇒ <b>templado</b> (restauración, sin recristalizar del todo); por encima ⇒ <b>caliente</b>. Con ello se sabe qué esperar: en caliente el material no se endurece y se deforma casi sin esfuerzo, pero sale oxidado y con peor precisión; en frío sale preciso y duro, pero a costa de más fuerza y de posibles grietas por falta de ductilidad.</p></div><!--/amp1--><!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Deformación plástica</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Trabajo en frío y en caliente</p><p class="lede">Cuando se deforma un metal, sus cristales se deforman y se «endurecen» (cada vez cuesta más deformarlos): es el <b>endurecimiento por deformación</b>, \(\sigma=C\varepsilon^n\). Calentando, los átomos se mueven y el metal se «cura» formando cristales nuevos: la <b>recristalización</b>. La frontera entre trabajar en frío y en caliente no es una temperatura fija, sino la temperatura de recristalización del material, que ronda el 30–50 % de su temperatura de fusión <b>medida en kelvin</b>. Por debajo: <b>frío</b> (endurece, buen acabado, tolerancias estrechas, mucha fuerza); por encima: <b>caliente</b> (no endurece, poca fuerza, mala tolerancia y óxido). El error más común del tema: olvidar pasar los grados centígrados a kelvin.</p><p class="ft">Cómo clasificar una temperatura de trabajo</p><p>Receta de tres pasos: <b>(1)</b> pasa \(T_f\) a kelvin (\(T[K]=T[°C]+273\)); <b>(2)</b> calcula \(0{,}3\,T_f\) y \(0{,}5\,T_f\); <b>(3)</b> compara la temperatura de trabajo (también en kelvin) con esa franja: por debajo ⇒ trabajo en <b>frío</b>; dentro ⇒ <b>templado</b> (restauración, sin recristalizar del todo); por encima ⇒ <b>caliente</b>. Con ello se sabe qué esperar: en caliente el material no se endurece y se deforma casi sin esfuerzo, pero sale oxidado y con peor precisión; en frío sale preciso y duro, pero a costa de más fuerza y de posibles grietas por falta de ductilidad.</p></div><!--/amp1--><!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Deformación plástica</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un material se deforma de forma permanente cuando la tensión supera el límite elástico. Por debajo, la deformación es reversible.</div>
 <ul><li><b>Elástica</b>: se recupera al retirar la carga.</li><li><b>Plástica</b>: queda permanente. Es la base del conformado.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> Tras la zona plástica, el material puede romperse. Un proceso de conformado debe quedarse dentro de la zona plástica estable.</div>

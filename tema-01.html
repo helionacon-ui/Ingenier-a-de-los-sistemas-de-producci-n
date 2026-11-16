@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,15 +86,15 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">Fundamentos · Tema 1</p><h2 id="t1">El proceso de fabricación: flujos y clasificación</h2><div class="tags"><span class="tag">Fundamentos</span><span class="tag">Teoría</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Describir cualquier proceso de fabricación con el mismo modelo y saber clasificarlo según lo que le pasa a la masa.</p><p class="ft">El modelo de los tres flujos</p><p>Todo proceso de fabricación se estudia como una caja a la que entran y de la que salen <b>tres flujos</b>:</p><ul><li><b>Material</b>: la pieza de trabajo, que entra con una geometría y sale con otra, más el desperdicio.</li><li><b>Energía</b>: la que suministra la máquina, la que se transmite a la pieza y la que se pierde.</li><li><b>Información</b>: la geometría de la pieza de partida (entrada), la geometría de la herramienta y su movimiento relativo (cambio de forma) y la geometría resultante (salida).</li></ul><p>La relación clave del flujo de información es:</p><p style="text-align:center"><b>información de entrada + información de cambio de forma = información de salida</b></p><p>Es lo que justifica el control numérico: si la información de cambio de forma se puede escribir en un programa, la pieza se puede fabricar automáticamente.</p><p class="ft">Clasificación por el flujo de material</p><p>Es <b>la</b> clasificación de la asignatura, y de ella cuelga todo lo demás:</p><div class="tw"><table><tr><th>Tipo</th><th>Qué le pasa a la masa</th><th>Relación</th><th>Ejemplos</th></tr><tr><td><b>Directo</b></td><td>se conserva: sólo cambia de forma</td><td>\(M_s=M_e\)</td><td>forja, extrusión, laminación, estirado</td></tr><tr><td><b>Divergente</b></td><td>se reduce: se elimina material</td><td>\(M_e=M_{s1}+M_{s2}\)</td><td>fresado, torneado, taladrado, electroerosión</td></tr><tr><td><b>Convergente</b></td><td>se suma: se unen piezas</td><td>\(M_s=M_{e1}+M_{e2}\)</td><td>soldadura, remachado, adhesivos</td></tr><tr><td><b>Auxiliar</b></td><td>no forma parte de la pieza</td><td>—</td><td>lubricantes, refrigerantes</td></tr></table></div><p>En el divergente, la <b>geometría final queda circunscrita</b> en la geometría inicial: no se puede fabricar por arranque de viruta nada que no quepa dentro del bruto de partida. Es una regla que decide si un proceso es viable antes de calcular nada.</p><p class="ft">Estados del material y familias de procesos</p><p>El material puede entrar en estado <b>sólido, líquido, granular o gaseoso</b>, y un mismo proceso puede combinar varios. De ahí salen las cuatro grandes familias que estructuran la asignatura:</p><ul><li><b>Conformado por deformación plástica</b> (sólido, masa constante): forja, laminación, extrusión, trefilado, conformado de chapa.</li><li><b>Conformado por fusión</b> (líquido): fundición en arena, en coquilla, a presión, por cera perdida.</li><li><b>Conformado por arranque de material</b> (divergente): torneado, fresado, taladrado, rectificado, electroerosión.</li><li><b>Procesos de unión</b> (convergente): soldadura por fusión o por presión, remachado, adhesivos.</li></ul><p class="ft">Qué decide elegir un proceso</p><p>Cuatro criterios, en este orden:</p><ol><li><b>Geometría</b>: ¿cabe dentro del bruto? ¿tiene cavidades internas? ¿es de revolución?</li><li><b>Material</b>: su ductilidad decide si admite deformación plástica; su temperatura de fusión, si admite fundición.</li><li><b>Tolerancias y acabado</b> requeridos: la fundición en arena da ±1 mm, el mecanizado ±0,01 mm.</li><li><b>Serie</b>: una matriz de forja cuesta miles de euros y sólo se amortiza con miles de piezas; para diez unidades se mecaniza.</li></ol></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Describir cualquier proceso de fabricación con el mismo modelo y saber clasificarlo según lo que le pasa a la masa.</p><p class="ft">El modelo de los tres flujos</p><p class="lede">Todo proceso de fabricación se estudia como una caja a la que entran y de la que salen <b>tres flujos</b>:</p><ul><li><b>Material</b>: la pieza de trabajo, que entra con una geometría y sale con otra, más el desperdicio.</li><li><b>Energía</b>: la que suministra la máquina, la que se transmite a la pieza y la que se pierde.</li><li><b>Información</b>: la geometría de la pieza de partida (entrada), la geometría de la herramienta y su movimiento relativo (cambio de forma) y la geometría resultante (salida).</li></ul><p>La relación clave del flujo de información es:</p><p style="text-align:center"><b>información de entrada + información de cambio de forma = información de salida</b></p><p>Es lo que justifica el control numérico: si la información de cambio de forma se puede escribir en un programa, la pieza se puede fabricar automáticamente.</p><p class="ft">Clasificación por el flujo de material</p><p>Es <b>la</b> clasificación de la asignatura, y de ella cuelga todo lo demás:</p><div class="tw"><table><tr><th>Tipo</th><th>Qué le pasa a la masa</th><th>Relación</th><th>Ejemplos</th></tr><tr><td><b>Directo</b></td><td>se conserva: sólo cambia de forma</td><td>\(M_s=M_e\)</td><td>forja, extrusión, laminación, estirado</td></tr><tr><td><b>Divergente</b></td><td>se reduce: se elimina material</td><td>\(M_e=M_{s1}+M_{s2}\)</td><td>fresado, torneado, taladrado, electroerosión</td></tr><tr><td><b>Convergente</b></td><td>se suma: se unen piezas</td><td>\(M_s=M_{e1}+M_{e2}\)</td><td>soldadura, remachado, adhesivos</td></tr><tr><td><b>Auxiliar</b></td><td>no forma parte de la pieza</td><td>—</td><td>lubricantes, refrigerantes</td></tr></table></div><p>En el divergente, la <b>geometría final queda circunscrita</b> en la geometría inicial: no se puede fabricar por arranque de viruta nada que no quepa dentro del bruto de partida. Es una regla que decide si un proceso es viable antes de calcular nada.</p><p class="ft">Estados del material y familias de procesos</p><p>El material puede entrar en estado <b>sólido, líquido, granular o gaseoso</b>, y un mismo proceso puede combinar varios. De ahí salen las cuatro grandes familias que estructuran la asignatura:</p><ul><li><b>Conformado por deformación plástica</b> (sólido, masa constante): forja, laminación, extrusión, trefilado, conformado de chapa.</li><li><b>Conformado por fusión</b> (líquido): fundición en arena, en coquilla, a presión, por cera perdida.</li><li><b>Conformado por arranque de material</b> (divergente): torneado, fresado, taladrado, rectificado, electroerosión.</li><li><b>Procesos de unión</b> (convergente): soldadura por fusión o por presión, remachado, adhesivos.</li></ul><p class="ft">Qué decide elegir un proceso</p><p>Cuatro criterios, en este orden:</p><ol><li><b>Geometría</b>: ¿cabe dentro del bruto? ¿tiene cavidades internas? ¿es de revolución?</li><li><b>Material</b>: su ductilidad decide si admite deformación plástica; su temperatura de fusión, si admite fundición.</li><li><b>Tolerancias y acabado</b> requeridos: la fundición en arena da ±1 mm, el mecanizado ±0,01 mm.</li><li><b>Serie</b>: una matriz de forja cuesta miles de euros y sólo se amortiza con miles de piezas; para diez unidades se mecaniza.</li></ol></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">7 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">directo</td><td>masa constante</td><td class="u">forja, extrusión</td></tr><tr><td class="sym">divergente</td><td>reducción de masa</td><td class="u">mecanizado</td></tr><tr><td class="sym">convergente</td><td>unión</td><td class="u">soldadura</td></tr><tr><td class="sym">auxiliar</td><td>lubricantes y refrigerantes</td><td class="u"></td></tr><tr><td class="sym">M(e) / M(s)</td><td>masa de entrada / salida</td><td class="u"></td></tr><tr><td class="sym">flujo de información</td><td>geometría y movimiento</td><td class="u"></td></tr><tr><td class="sym">serie</td><td>número de piezas</td><td class="u">decide el proceso</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - flujos de material y aprovechamiento</p><div data-sim="flujos"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Los tres flujos de un proceso</p><p>Cualquier proceso de fabricación se puede describir con tres flujos: el de <b>materia</b> (qué material entra y qué sale), el de <b>energía</b> (qué fuerza o calor hay que aportar) y el de <b>información</b> (planos, programa, parámetros). Es la forma de empezar un problema sin perderse: anotar qué entra, qué sale y qué hay que dar. Para clasificar el proceso basta mirar la <b>masa</b>: si se conserva, es un flujo <b>directo</b> (\(M_s=M_e\): conformado por deformación, fundición); si la pieza final pesa menos que la de partida, es <b>divergente</b> (\(M_e=M_{s1}+M_{s2}\): arranque de viruta, corte); si se unen piezas, es <b>convergente</b> (\(M_s=M_{e1}+M_{e2}\): soldadura, ensamblado).</p><p class="ft">Cómo elegir entre procesos</p><p>Se pregunta en este orden: <b>(1)</b> ¿cabe la geometría final dentro de la de partida? Si no, un proceso divergente queda descartado. <b>(2)</b> ¿En qué estado está el material (sólido, líquido, polvo)? El líquido invita a fundir; el polvo, a sinterizar; el sólido, a deformar o arrancar. <b>(3)</b> ¿Qué serie se hace? Con pocas piezas conviene un utillaje barato aunque cada pieza salga más cara; con muchas, al revés. Un buen indicador del desperdicio es el <b>aprovechamiento</b> = masa de pieza ÷ masa de partida: los procesos de deformación y fundición rondan el 90 % o más, y el mecanizado desde barra puede quedarse en el 20–50 %.</p></div><!--/amp1--><!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Qué es un proceso de fabricación</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Los tres flujos de un proceso</p><p class="lede">Cualquier proceso de fabricación se puede describir con tres flujos: el de <b>materia</b> (qué material entra y qué sale), el de <b>energía</b> (qué fuerza o calor hay que aportar) y el de <b>información</b> (planos, programa, parámetros). Es la forma de empezar un problema sin perderse: anotar qué entra, qué sale y qué hay que dar. Para clasificar el proceso basta mirar la <b>masa</b>: si se conserva, es un flujo <b>directo</b> (\(M_s=M_e\): conformado por deformación, fundición); si la pieza final pesa menos que la de partida, es <b>divergente</b> (\(M_e=M_{s1}+M_{s2}\): arranque de viruta, corte); si se unen piezas, es <b>convergente</b> (\(M_s=M_{e1}+M_{e2}\): soldadura, ensamblado).</p><p class="ft">Cómo elegir entre procesos</p><p>Se pregunta en este orden: <b>(1)</b> ¿cabe la geometría final dentro de la de partida? Si no, un proceso divergente queda descartado. <b>(2)</b> ¿En qué estado está el material (sólido, líquido, polvo)? El líquido invita a fundir; el polvo, a sinterizar; el sólido, a deformar o arrancar. <b>(3)</b> ¿Qué serie se hace? Con pocas piezas conviene un utillaje barato aunque cada pieza salga más cara; con muchas, al revés. Un buen indicador del desperdicio es el <b>aprovechamiento</b> = masa de pieza ÷ masa de partida: los procesos de deformación y fundición rondan el 90 % o más, y el mecanizado desde barra puede quedarse en el 20–50 %.</p></div><!--/amp1--><!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Qué es un proceso de fabricación</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un proceso de fabricación transforma una materia prima en una pieza con forma, dimensiones y propiedades definidas. Se clasifican por el tipo de transformación que sufre el material.</div>
 <ul><li><b>Conformado</b>: cambia la forma por deformación plástica (forja, laminación, extrusión).</li><li><b>Arranque de material</b>: quita material (torneado, fresado, taladrado).</li><li><b>Unión</b>: une piezas (soldadura, remachado).</li><li><b>Fundición</b>: moldea el material fundido.</li></ul>
-<h4>2. Flujos de material</h4>
+<h4><span class="hn">2</span>Flujos de material</h4>
 <p>Un proceso puede ser por <b>lotes</b> (cantidades fijas) o en <b>flujo continuo</b> (producción constante, con alta inversión). La elección depende de la cantidad y la variedad.</p>
 </div><!--/deep--><h3 id="t1-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(M_s=M_e\)</td><td>flujo directo: conservación de masa</td></tr><tr><td>\(M_e=M_{s1}+M_{s2}\)</td><td>flujo divergente: reducción de masa</td></tr><tr><td>\(M_s=M_{e1}+M_{e2}\)</td><td>flujo convergente: unión</td></tr><tr><td>\(I_{entrada}+I_{cambio}=I_{salida}\)</td><td>flujo de información</td></tr></table></div></div>

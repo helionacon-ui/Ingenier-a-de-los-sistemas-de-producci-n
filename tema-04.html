@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,17 +86,17 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
 <div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">Deformación · Tema 4</p><h2 id="t4">Estado de tensiones y criterio de Von Mises</h2><div class="tags"><span class="tag">Deformación</span><span class="tag">Teoría</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Describir el estado de tensiones en un punto y reducirlo a un único valor comparable con el ensayo de tracción.</p><p class="ft">El tensor de tensiones</p><p>En un elemento de volumen diferencial en el entorno de un punto P, orientado según XYZ, la tensión en cada cara se descompone en una <b>tensión normal</b> \(\sigma_n\) y una <b>tensión cortante</b> \(\tau\). Las nueve componentes forman el <b>tensor de tensiones</b>, que es <b>simétrico</b> (\(\tau_{xy}=\tau_{yx}\)), de modo que sólo hay seis componentes independientes.</p><p>El tensor depende del sistema de referencia. Al cambiarlo con una matriz de rotación \([R]\), el tensor nuevo es \([T']=[R][T][R]^t\).</p><p class="ft">Planos, direcciones y tensiones principales</p><p>Los <b>planos principales</b> son aquellos en los que el vector tensión es perpendicular al plano, es decir, donde <b>\(\tau=0\)</b> y \(\sigma_n=\sigma\). Las <b>direcciones principales</b> (1, 2, 3) son las normales a esos planos, y los valores de la tensión en ellos son las <b>tensiones principales</b> \(\sigma_1,\sigma_2,\sigma_3\).</p><p>Obtener los planos y direcciones principales es hacer un cambio de coordenadas que conduce a un <b>tensor diagonal</b>:</p>\[[T]_{123}=[M][T]_{XYZ}[M]^t=\begin{pmatrix}\sigma_1&0&0\\0&\sigma_2&0\\0&0&\sigma_3\end{pmatrix}\]<p>En los problemas de conformado, los ejes del proceso <b>ya son</b> los principales, porque las caras están libres de cortante: ahí está el atajo.</p><p class="ft">Tensión y deformación equivalentes</p><p>El problema práctico: en tracción se conoce cuándo fluye el material (al llegar a \(\sigma_y\)), pero en un proceso de conformado hay tres tensiones a la vez. La <b>tensión equivalente de Von Mises</b> reduce ese estado a un único valor comparable con el ensayo de tracción. El material fluye cuando \(\sigma_e\ge\sigma_y\).</p><p>Y de forma análoga se define la <b>deformación equivalente</b>, que es la que hay que meter en la curva \(\sigma=C\varepsilon^{n}\) y en la integral del trabajo.</p><p class="ft">El caso de los procesos de conformado</p><p>Dos situaciones que resuelven la mayoría de los problemas:</p><ul><li><b>Recalcado o compresión simple</b> (\(\sigma_1=\sigma_2=0\)): la deformación equivalente resulta ser \(\varepsilon_{eq}=|\varepsilon_3|\). Es una simplificación que ahorra mucho tiempo y conviene comprobar en el examen con una línea.</li><li><b>Deformación plana</b> (laminación de chapa ancha, donde el ancho no cambia): \(\varepsilon_2=0\), de donde \(\varepsilon_1=-\varepsilon_3\) y la tensión equivalente queda \(\sigma_e=\frac{\sqrt3}{2}(\sigma_1-\sigma_3)\). Y la tensión intermedia es la media: \(\sigma_2=\frac{\sigma_1+\sigma_3}{2}\).</li></ul></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Describir el estado de tensiones en un punto y reducirlo a un único valor comparable con el ensayo de tracción.</p><p class="ft">El tensor de tensiones</p><p class="lede">En un elemento de volumen diferencial en el entorno de un punto P, orientado según XYZ, la tensión en cada cara se descompone en una <b>tensión normal</b> \(\sigma_n\) y una <b>tensión cortante</b> \(\tau\). Las nueve componentes forman el <b>tensor de tensiones</b>, que es <b>simétrico</b> (\(\tau_{xy}=\tau_{yx}\)), de modo que sólo hay seis componentes independientes.</p><p>El tensor depende del sistema de referencia. Al cambiarlo con una matriz de rotación \([R]\), el tensor nuevo es \([T']=[R][T][R]^t\).</p><p class="ft">Planos, direcciones y tensiones principales</p><p>Los <b>planos principales</b> son aquellos en los que el vector tensión es perpendicular al plano, es decir, donde <b>\(\tau=0\)</b> y \(\sigma_n=\sigma\). Las <b>direcciones principales</b> (1, 2, 3) son las normales a esos planos, y los valores de la tensión en ellos son las <b>tensiones principales</b> \(\sigma_1,\sigma_2,\sigma_3\).</p><p>Obtener los planos y direcciones principales es hacer un cambio de coordenadas que conduce a un <b>tensor diagonal</b>:</p>\[[T]_{123}=[M][T]_{XYZ}[M]^t=\begin{pmatrix}\sigma_1&0&0\\0&\sigma_2&0\\0&0&\sigma_3\end{pmatrix}\]<p>En los problemas de conformado, los ejes del proceso <b>ya son</b> los principales, porque las caras están libres de cortante: ahí está el atajo.</p><p class="ft">Tensión y deformación equivalentes</p><p>El problema práctico: en tracción se conoce cuándo fluye el material (al llegar a \(\sigma_y\)), pero en un proceso de conformado hay tres tensiones a la vez. La <b>tensión equivalente de Von Mises</b> reduce ese estado a un único valor comparable con el ensayo de tracción. El material fluye cuando \(\sigma_e\ge\sigma_y\).</p><p>Y de forma análoga se define la <b>deformación equivalente</b>, que es la que hay que meter en la curva \(\sigma=C\varepsilon^{n}\) y en la integral del trabajo.</p><p class="ft">El caso de los procesos de conformado</p><p>Dos situaciones que resuelven la mayoría de los problemas:</p><ul><li><b>Recalcado o compresión simple</b> (\(\sigma_1=\sigma_2=0\)): la deformación equivalente resulta ser \(\varepsilon_{eq}=|\varepsilon_3|\). Es una simplificación que ahorra mucho tiempo y conviene comprobar en el examen con una línea.</li><li><b>Deformación plana</b> (laminación de chapa ancha, donde el ancho no cambia): \(\varepsilon_2=0\), de donde \(\varepsilon_1=-\varepsilon_3\) y la tensión equivalente queda \(\sigma_e=\frac{\sqrt3}{2}(\sigma_1-\sigma_3)\). Y la tensión intermedia es la media: \(\sigma_2=\frac{\sigma_1+\sigma_3}{2}\).</li></ul></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">9 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">[T]</td><td>tensor de tensiones</td><td class="u"></td></tr><tr><td class="sym">σn</td><td>tensión normal</td><td class="u">MPa</td></tr><tr><td class="sym">τ</td><td>tensión cortante</td><td class="u">MPa</td></tr><tr><td class="sym">plano principal</td><td>τ = 0</td><td class="u"></td></tr><tr><td class="sym">σ1, σ2, σ3</td><td>tensiones principales</td><td class="u">MPa</td></tr><tr><td class="sym">[R]</td><td>matriz de rotación</td><td class="u"></td></tr><tr><td class="sym">σe</td><td>tensión equivalente</td><td class="u">Von Mises</td></tr><tr><td class="sym">εe</td><td>deformación equivalente</td><td class="u"></td></tr><tr><td class="sym">def. plana</td><td>ε2 = 0</td><td class="u">laminación</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Calculadora interactiva - tensiones principales y criterio de Von Mises</p><div data-sim="vonmises"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El tensor de tensiones y las tensiones principales</p><p>En un punto de una pieza hay tensiones en muchas direcciones a la vez, que se ordenan en una matriz de \(3\times3\): el <b>tensor de tensiones</b> (tres normales \(\sigma\) y seis tangenciales \(\tau\), simétricas). Si giras los ejes hay una orientación en la que no quedan tangenciales: allí las normales se llaman <b>tensiones principales</b> \(\sigma_1\ge\sigma_2\ge\sigma_3\). Con ellas todo es más sencillo. Cambiar de sistema de referencia se hace con una matriz de rotación: \([T']=[R][T][R]^t\). En problemas de forja o laminación casi siempre ya vienen los ejes principales y solo hay que usar los valores.</p><p class="ft">Tensión y deformación equivalentes (Von Mises)</p><p>Un estado de tensiones complicado se compara con la tracción simple mediante una <b>tensión equivalente</b>: \(\sigma_e=\sqrt{\tfrac12[(\sigma_1-\sigma_2)^2+(\sigma_2-\sigma_3)^2+(\sigma_3-\sigma_1)^2]}\). Si la \(\sigma_e\) supera el límite elástico, el material fluye. La misma idea se aplica a las deformaciones: \(\varepsilon_e=\sqrt{\tfrac23(\varepsilon_1^2+\varepsilon_2^2+\varepsilon_3^2)}\). Casos útiles: en tracción uniaxial \(\sigma_e=\sigma_1\); en <b>recalcado axisimétrico</b> \(\varepsilon_2=\varepsilon_1=-\varepsilon_3/2\), por lo que \(\varepsilon_e=|\varepsilon_3|\); en <b>deformación plana</b> \(\varepsilon_2=0\), y \(\sigma_2=(\sigma_1+\sigma_3)/2\).</p></div><!--/amp1--><!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Estado de tensiones en el conformado</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El tensor de tensiones y las tensiones principales</p><p class="lede">En un punto de una pieza hay tensiones en muchas direcciones a la vez, que se ordenan en una matriz de \(3\times3\): el <b>tensor de tensiones</b> (tres normales \(\sigma\) y seis tangenciales \(\tau\), simétricas). Si giras los ejes hay una orientación en la que no quedan tangenciales: allí las normales se llaman <b>tensiones principales</b> \(\sigma_1\ge\sigma_2\ge\sigma_3\). Con ellas todo es más sencillo. Cambiar de sistema de referencia se hace con una matriz de rotación: \([T']=[R][T][R]^t\). En problemas de forja o laminación casi siempre ya vienen los ejes principales y solo hay que usar los valores.</p><p class="ft">Tensión y deformación equivalentes (Von Mises)</p><p>Un estado de tensiones complicado se compara con la tracción simple mediante una <b>tensión equivalente</b>: \(\sigma_e=\sqrt{\tfrac12[(\sigma_1-\sigma_2)^2+(\sigma_2-\sigma_3)^2+(\sigma_3-\sigma_1)^2]}\). Si la \(\sigma_e\) supera el límite elástico, el material fluye. La misma idea se aplica a las deformaciones: \(\varepsilon_e=\sqrt{\tfrac23(\varepsilon_1^2+\varepsilon_2^2+\varepsilon_3^2)}\). Casos útiles: en tracción uniaxial \(\sigma_e=\sigma_1\); en <b>recalcado axisimétrico</b> \(\varepsilon_2=\varepsilon_1=-\varepsilon_3/2\), por lo que \(\varepsilon_e=|\varepsilon_3|\); en <b>deformación plana</b> \(\varepsilon_2=0\), y \(\sigma_2=(\sigma_1+\sigma_3)/2\).</p></div><!--/amp1--><!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Estado de tensiones en el conformado</h4>
 <div class="box key deepnote"><b>Idea clave.</b> en un punto del material hay tensiones en varias direcciones. Para saber cuándo el material plastifica, se combinan esas tensiones en una tensión equivalente.</div>
 <details class="dem"><summary><span class="pn">∴</span>Criterio de Von Mises</summary><div class="inner"><div class="eqd">\[\sigma_{eq}=\sqrt{\tfrac12\left[(\sigma_1-\sigma_2)^2+(\sigma_2-\sigma_3)^2+(\sigma_3-\sigma_1)^2\right]}\]</div>
 <p>Si \(\sigma_{eq}\ge\sigma_Y\), el material plastifica. Para tracción uniaxial, \(\sigma_{eq}=\sigma_1\).</p>
 <div class="box trap deepnote"><b>Cuidado.</b> El criterio de Von Mises solo indica cuándo empieza la plasticidad. No dice qué forma tendrá la pieza ni cómo fluye el material.</div></div></details>
-<h4>2. Fricción en el conformado</h4>
+<h4><span class="hn">2</span>Fricción en el conformado</h4>
 <p>La fricción entre herramienta y pieza aumenta la fuerza necesaria. Se lubrica para reducirla. Con mucha fricción aparece el efecto «barril» en el recalcado.</p>
 </div><!--/deep--><h3 id="t4-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\([T]=\begin{pmatrix}\sigma_{nx}&\tau_{xy}&\tau_{xz}\\\tau_{yx}&\sigma_{ny}&\tau_{yz}\\\tau_{zx}&\tau_{zy}&\sigma_{nz}\end{pmatrix}\)</td><td>tensor de tensiones</td></tr><tr><td>\([T']=[R][T][R]^t\)</td><td>cambio de sistema de referencia</td></tr><tr><td>\(\sigma_e=\sqrt{\tfrac12\left[(\sigma_1-\sigma_2)^2+(\sigma_2-\sigma_3)^2+(\sigma_3-\sigma_1)^2\right]}\)</td><td>Von Mises</td></tr><tr><td>\(\varepsilon_e=\sqrt{\tfrac23\left(\varepsilon_1^2+\varepsilon_2^2+\varepsilon_3^2\right)}\)</td><td>deformación equivalente</td></tr><tr><td>\(\text{Recalcado: }\varepsilon_{eq}=|\varepsilon_3|\)</td><td>caso axisimétrico</td></tr><tr><td>\(\text{Def. plana: }\sigma_e=\tfrac{\sqrt3}{2}(\sigma_1-\sigma_3)\)</td><td>laminación ancha</td></tr><tr><td>\(\sigma_2=\dfrac{\sigma_1+\sigma_3}{2}\)</td><td>tensión intermedia en deformación plana</td></tr></table></div></div>

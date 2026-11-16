@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,17 +86,17 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
 <div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">Procesos · Tema 7</p><h2 id="t7">Conformado de chapa y procesos de alta energía</h2><div class="tags"><span class="tag">Procesos</span><span class="tag">Procesos</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Los procesos que parten de chapa y los que aplican mucha energía en muy poco tiempo.</p><p class="ft">Embutición y doblado</p><p>La <b>embutición</b> convierte una chapa plana en una pieza hueca empujándola con un punzón dentro de una matriz. El problema característico es la <b>recuperación elástica</b> (<i>springback</i>): al retirar la herramienta, la pieza recupera parte de la deformación y la geometría final no es la de la matriz. Se compensa sobredoblando.</p><p>El <b>doblado</b> es el mismo fenómeno en su forma más simple: se dobla más de lo necesario para que, al recuperar, quede el ángulo buscado.</p><p class="ft">Estirado de chapa</p><p>Consiste en someter la pieza a esfuerzos de <b>tracción</b> mediante dos mordazas que estiran y doblan la chapa sobre una matriz.</p><p>Se utiliza en la <b>industria aeronáutica</b> y para componentes de <b>gran tamaño y pequeños lotes</b>: hacer una matriz completa para veinte piezas de fuselaje no sale a cuenta, pero una matriz simple sobre la que estirar, sí.</p><p>Las tolerancias dependen de la <b>recuperación elástica</b> del material y de la geometría.</p><p class="ft">Conformado de alta potencia</p><p>Consiste en la aplicación de <b>grandes cantidades de energía en tiempos muy cortos</b>. Tres variantes:</p><div class="tw"><table><tr><th>Proceso</th><th>Cómo genera la energía</th><th>Aplicación</th></tr><tr><td><b>Explosivos</b></td><td>detonación; los parámetros son el <b>tamaño de la carga</b> y la <b>distancia</b></td><td>piezas de gran tamaño en la industria aeroespacial</td></tr><tr><td><b>Electromagnético</b></td><td>principio de <b>inducción</b>, con campos magnéticos opuestos</td><td>el <b>más utilizado</b> de su categoría; se usa para tubos</td></tr><tr><td><b>Electrohidráulico</b></td><td>onda de choque generada por una <b>descarga eléctrica</b></td><td>similar al de explosivos pero con menos energía, para piezas más pequeñas</td></tr></table></div><p>Lo que tienen en común: no hace falta una prensa capaz de dar esa fuerza, porque la energía se libera de golpe. Eso permite conformar piezas muy grandes con instalaciones modestas.</p><p class="ft">Cuándo se elige cada uno</p><p>La regla práctica: <b>serie grande y pieza pequeña</b> → embutición con matriz; <b>serie corta y pieza grande</b> → estirado; <b>pieza muy grande o material difícil</b> → alta energía.</p><p>El factor decisivo vuelve a ser el coste del utillaje frente al número de piezas, igual que en el tema 1.</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Los procesos que parten de chapa y los que aplican mucha energía en muy poco tiempo.</p><p class="ft">Embutición y doblado</p><p class="lede">La <b>embutición</b> convierte una chapa plana en una pieza hueca empujándola con un punzón dentro de una matriz. El problema característico es la <b>recuperación elástica</b> (<i>springback</i>): al retirar la herramienta, la pieza recupera parte de la deformación y la geometría final no es la de la matriz. Se compensa sobredoblando.</p><p>El <b>doblado</b> es el mismo fenómeno en su forma más simple: se dobla más de lo necesario para que, al recuperar, quede el ángulo buscado.</p><p class="ft">Estirado de chapa</p><p>Consiste en someter la pieza a esfuerzos de <b>tracción</b> mediante dos mordazas que estiran y doblan la chapa sobre una matriz.</p><p>Se utiliza en la <b>industria aeronáutica</b> y para componentes de <b>gran tamaño y pequeños lotes</b>: hacer una matriz completa para veinte piezas de fuselaje no sale a cuenta, pero una matriz simple sobre la que estirar, sí.</p><p>Las tolerancias dependen de la <b>recuperación elástica</b> del material y de la geometría.</p><p class="ft">Conformado de alta potencia</p><p>Consiste en la aplicación de <b>grandes cantidades de energía en tiempos muy cortos</b>. Tres variantes:</p><div class="tw"><table><tr><th>Proceso</th><th>Cómo genera la energía</th><th>Aplicación</th></tr><tr><td><b>Explosivos</b></td><td>detonación; los parámetros son el <b>tamaño de la carga</b> y la <b>distancia</b></td><td>piezas de gran tamaño en la industria aeroespacial</td></tr><tr><td><b>Electromagnético</b></td><td>principio de <b>inducción</b>, con campos magnéticos opuestos</td><td>el <b>más utilizado</b> de su categoría; se usa para tubos</td></tr><tr><td><b>Electrohidráulico</b></td><td>onda de choque generada por una <b>descarga eléctrica</b></td><td>similar al de explosivos pero con menos energía, para piezas más pequeñas</td></tr></table></div><p>Lo que tienen en común: no hace falta una prensa capaz de dar esa fuerza, porque la energía se libera de golpe. Eso permite conformar piezas muy grandes con instalaciones modestas.</p><p class="ft">Cuándo se elige cada uno</p><p>La regla práctica: <b>serie grande y pieza pequeña</b> → embutición con matriz; <b>serie corta y pieza grande</b> → estirado; <b>pieza muy grande o material difícil</b> → alta energía.</p><p>El factor decisivo vuelve a ser el coste del utillaje frente al número de piezas, igual que en el tema 1.</p></div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">7 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">embutición</td><td>punzón dentro de matriz</td><td class="u"></td></tr><tr><td class="sym">springback</td><td>recuperación elástica</td><td class="u"></td></tr><tr><td class="sym">estirado de chapa</td><td>mordazas sobre matriz</td><td class="u">aeronáutica</td></tr><tr><td class="sym">alta potencia</td><td>mucha energía en poco tiempo</td><td class="u"></td></tr><tr><td class="sym">explosivos</td><td>carga y distancia</td><td class="u">aeroespacial</td></tr><tr><td class="sym">electromagnético</td><td>inducción</td><td class="u">el más usado</td></tr><tr><td class="sym">electrohidráulico</td><td>descarga eléctrica</td><td class="u">piezas pequeñas</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Calculadora interactiva - seleccion de proceso y punto de equilibrio</p><div data-sim="seleccion"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Procesos de chapa: doblar, embutir, estirar</p><p>La chapa se trabaja de tres formas básicas: <b>doblado</b> (una línea de pliegue), <b>embutición</b> (de una chapa plana se hace una pieza hueca, como una taza) y <b>estirado</b> (se tira de la chapa sobre un molde). Problemas típicos: la <b>recuperación elástica</b> (<em>springback</em>): al soltar, la chapa recupera un poco el ángulo, y es mayor cuanto mayor es el límite elástico y menor el espesor (hay que doblar de más), y el <b>radio mínimo de doblado</b>, que crece con el espesor y decrece con la ductilidad (por debajo, se agrieta la cara exterior). También existen procesos de alta velocidad como el conformado electromagnético o con explosivo, de energía \(E=\tfrac12CV^2\) en el primer caso.</p><p class="ft">Elegir el proceso por serie y coste</p><p>La decisión final suele ser económica: un proceso con utillaje caro (matriz) y poco coste por pieza compensa en series largas; uno con utillaje barato y pieza cara, en series cortas. El punto de equilibrio se calcula igualando costes totales: \(C_A=U_A+c_AN\) y \(C_B=U_B+c_BN\) ⇒ \(N=\dfrac{U_A-U_B}{c_B-c_A}\). Por encima de ese número de piezas conviene el proceso de utillaje caro. Se añade la información cualitativa: tolerancias, material, tamaño y tiempo de entrega.</p></div><!--/amp1--><!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Conformado de chapa</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Procesos de chapa: doblar, embutir, estirar</p><p class="lede">La chapa se trabaja de tres formas básicas: <b>doblado</b> (una línea de pliegue), <b>embutición</b> (de una chapa plana se hace una pieza hueca, como una taza) y <b>estirado</b> (se tira de la chapa sobre un molde). Problemas típicos: la <b>recuperación elástica</b> (<em>springback</em>): al soltar, la chapa recupera un poco el ángulo, y es mayor cuanto mayor es el límite elástico y menor el espesor (hay que doblar de más), y el <b>radio mínimo de doblado</b>, que crece con el espesor y decrece con la ductilidad (por debajo, se agrieta la cara exterior). También existen procesos de alta velocidad como el conformado electromagnético o con explosivo, de energía \(E=\tfrac12CV^2\) en el primer caso.</p><p class="ft">Elegir el proceso por serie y coste</p><p>La decisión final suele ser económica: un proceso con utillaje caro (matriz) y poco coste por pieza compensa en series largas; uno con utillaje barato y pieza cara, en series cortas. El punto de equilibrio se calcula igualando costes totales: \(C_A=U_A+c_AN\) y \(C_B=U_B+c_BN\) ⇒ \(N=\dfrac{U_A-U_B}{c_B-c_A}\). Por encima de ese número de piezas conviene el proceso de utillaje caro. Se añade la información cualitativa: tolerancias, material, tamaño y tiempo de entrega.</p></div><!--/amp1--><!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Conformado de chapa</h4>
 <div class="box key deepnote"><b>Idea clave.</b> la chapa se deforma sin reducir su espesor de forma importante. Las operaciones clave son el doblado, la embutición y el estirado.</div>
 <ul><li><b>Doblado</b>: la chapa cambia de dirección alrededor de un eje.</li><li><b>Embutición</b>: la chapa se estira en una cavidad para dar un recipiente.</li><li><b>Límite de embutición</b>: la relación entre diámetros del disco y del punzón tiene un máximo.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Retorno elástico</summary><div class="inner"><p>Al retirar la carga, la chapa recupera parte de su deformación elástica y el ángulo se abre. Se compensa sobredoblando la pieza.</p>
 <div class="box trap deepnote"><b>Cuidado.</b> El retorno elástico crece con el límite elástico del material y con el radio de curvatura grande. Hay que ajustarlo con prueba y error.</div></div></details>
-<h4>2. Procesos de alta energía</h4>
+<h4><span class="hn">2</span>Procesos de alta energía</h4>
 <p>En los procesos de alta energía (explosivo, electrohidráulico, electromagnético) la carga se aplica en un tiempo muy corto. Permiten conformar materiales difíciles con herramientas simples.</p>
 </div><!--/deep--><h3 id="t7-formulas">Fórmulas y conceptos que hay que saber</h3>
 <div class="box key"><div class="tw"><table><tr><th>Expresión</th><th>Qué es</th></tr><tr><td>\(\text{Springback: } \theta_{final}<\theta_{matriz}\)</td><td>recuperación elástica</td></tr><tr><td>\(r_{\min}\propto\dfrac{e}{\text{ductilidad}}\)</td><td>radio mínimo de doblado</td></tr><tr><td>\(E=\tfrac12 CV^{2}\)</td><td>energía almacenada, conformado electromagnético</td></tr><tr><td>\(\text{parámetros explosivo: carga y distancia}\)</td><td></td></tr></table></div></div>
