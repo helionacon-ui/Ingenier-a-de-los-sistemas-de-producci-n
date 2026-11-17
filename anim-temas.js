@@ -2,13 +2,17 @@
 (function(){var M=window.MANIM;if(!M)return;var U=M.util,C=M.C,nf=U.nf,lerp=U.lerp,ease=U.ease,seg=U.seg,clamp=U.clamp,RG=U.RG,W=640;
 
 /* T1 clasificación de los procesos */
-M.reg('isp-t1',M.pasos({title:'Procesos de fabricación: cómo se da forma',H:560,dur:20,y0:115,gap:56,lines:[
- {s:'Conformado por deformación plástica: forja, laminación, extrusión, chapa',size:17,c:'f'},
- {s:'Conformado por fusión: fundición en arena, en coquilla, a presión',size:17,c:'hl'},
- {s:'Arranque de material: torneado, fresado, taladrado, rectificado',size:17,c:'m'},
- {s:'Unión: soldadura, uniones mecánicas, adhesivos',size:17,c:'g'},
- {s:'Aditivos y pulvimetalurgia: capa a capa o polvo sinterizado',size:17},
- {s:'Se elige según la pieza: forma, material, tolerancias y nº de unidades',size:17,b:true}]}));
+M.reg('isp-t1',M.base({title:'Procesos de fabricación: cuatro formas de dar forma',H:580,dur:20,caps:[[5,'<b>Deformación plástica</b>: se fuerza el metal sólido a tomar la forma (forja, laminación, extrusión, chapa). No se pierde material.'],[10,'<b>Fusión</b>: se funde el metal y se vierte en un molde (fundición). Permite formas complejas.'],[15,'<b>Arranque de material</b>: una herramienta quita viruta (torneado, fresado). Da las mejores tolerancias.'],[99,'<b>Unión</b>: se juntan piezas (soldadura, tornillos, adhesivos). La elección depende de forma, material, tolerancias y número de piezas.']]},
+ function(D,t){var k=Math.min(3,Math.floor(t/5)),u=(t%5)/5,P=[[160,170,'Deformación',C.f],[480,170,'Fusión',C.hl],[160,390,'Arranque de material',C.m],[480,390,'Unión',C.g]];
+  P.forEach(function(p,i){var on=i===k;D.rect(p[0]-140,p[1]-90,280,180,p[3],RG(p[3],on?.1:.03),on?2.6:1.2);D.text(p[2],p[0],p[1]-66,{s:16,a:'center',c:p[3],bold:on});});
+  var a=ease(seg(u,0.1,0.7));
+  var p=P[0],h=lerp(70,35,k===0?a:1),w=4200/h/ (k===0?1:1);D.rect(p[0]-w/2,p[1]+60-h,w,h,null,RG(C.f,.5));D.rect(p[0]-90,p[1]+60,180,10,null,C.ax);D.rect(p[0]-90,p[1]+50-h,180,10,null,C.ax);
+  p=P[1];D.path([[p[0]-60,p[1]+60],[p[0]-60,p[1]+0],[p[0]+60,p[1]+0],[p[0]+60,p[1]+60]],C.ax,2.4);var lv=k===1?a:(k>1?1:0);D.rect(p[0]-58,p[1]+58-56*lv,116,56*lv,null,RG(C.bad,.5));if(k===1&&a<1){D.line(p[0]+20,p[1]-50,p[0]+20,p[1]+58-56*lv,C.bad,6);D.path([[p[0]-10,p[1]-60],[p[0]+50,p[1]-60],[p[0]+40,p[1]-40],[p[0],p[1]-40]],C.ax,2,RG(C.ax,.2));}
+  p=P[2];var cut=k===2?a:(k>2?1:0);D.rect(p[0]-80,p[1]-10,160,60,null,RG(C.m,.35));D.rect(p[0]-80+160*(1-cut),p[1]-10,160*cut,20,null,RG(C.bg||'#fff',1));D.path([[p[0]-80+160*(1-cut)-4,p[1]-30],[p[0]-80+160*(1-cut)+14,p[1]-30],[p[0]-80+160*(1-cut)+4,p[1]+10]],C.ax,2,RG(C.ax,.4));
+  if(k===2)for(var i=0;i<4;i++)D.dot(p[0]-80+160*(1-cut)+12+i*6,p[1]-20-i*7*a,2.6,C.hl);
+  p=P[3];var j=k===3?a:(k<3?0:1);D.rect(p[0]-110,p[1]+10,100,30,null,RG(C.g,.4));D.rect(p[0]+10,p[1]+10,100,30,null,RG(C.g,.4));if(j>0){D.path([[p[0]-10,p[1]+10],[p[0],p[1]+10-12*j],[p[0]+10,p[1]+10]],C.hl,2,RG(C.hl,.7));if(j<1)D.dot(p[0],p[1]-20,6,C.bad);}
+  }));
+
 
 /* T2 tensión de fluencia y temperatura */
 M.reg('isp-t2',M.traza({title:'Deformación plástica: el efecto de la temperatura',H:560,dur:16,x0:0,x1:1,ax:{xr:[0,1.05],yr:[0,1.1],xt:[0.3,0.5,1],yt:[0.5,1],xd:1,yd:1,xl:'T/T_{f}',yl:'σ_{f}/σ_{f,amb}'},h:300,
