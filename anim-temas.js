@@ -91,4 +91,8 @@ M.reg('isp-t10',M.base({title:'Control numérico: el programa mueve la herramien
   D.path(done,C.m,3);var c=done[done.length-1];D.ring(c[0],c[1],10,C.bad,2.4);D.dot(c[0],c[1],3,C.bad);
   PATH.forEach(function(p,i){var y=110+i*40,on=i===k+1;if(on)D.rect(30,y-26,240,36,null,RG(C.y,.12));D.text(p[0],40,y,{s:16,c:on?C.y:C.w,mono:true,bold:on});});
   U.readout(D,[['','lineal G01','lineal G01','arco antihorario G03','lineal G01','lineal G01','fin de programa'][k+1]||''],520);}));
+M.reg('isp-t10b',M.traza({title:'Control numérico: velocidad de corte y de giro',H:560,dur:16,x0:10,x1:200,ax:{xr:[0,210],yr:[0,4200],xt:[50,100,150,200],yt:[1000,2000,3000,4000],xd:0,yd:0,xl:'D (mm)',yl:'n (rpm)'},h:300,f:function(Dd){return 1000*120/(Math.PI*Dd);},
+ extra:function(D,A){D.line(A.X(0),A.Y(3000),A.X(210),A.Y(3000),C.bad,1.4,[5,4]);D.text('n_{máx} del torno',A.X(205),A.Y(3000)-6,{s:13,c:C.bad,a:'right'});},
+ read:function(Dd){var n=120000/(Math.PI*Dd);return ['V_{c} = 120 m/min    D = '+nf(Dd,0)+' mm','n = 1000·V_{c}/(π·D) = '+nf(n,0)+' rpm'+(n>3000?'  → limitar a 3000 (G50)':'')];},
+ caps:[[5,'El fabricante de la herramienta recomienda una velocidad de corte V<sub>c</sub> (m/min) según el material. El husillo se programa en rpm.'],[10,'Para mantener V<sub>c</sub> constante, <i>n = 1000·V<sub>c</sub>/(πD)</i>: al refrentar hacia el centro el diámetro baja y las rpm se disparan.'],[99,'Por eso con velocidad de corte constante (G96) se limita la velocidad máxima del cabezal (G50).']]}));
 })();

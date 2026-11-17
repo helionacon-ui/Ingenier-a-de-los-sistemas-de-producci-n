@@ -126,6 +126,7 @@ Nxx G0 X.. Z.. M30     vuelta al punto de cambio y fin</div><p>La <b>cabecera</b
 <ul><li><b>G00</b>: movimiento rápido. <b>G01</b>: interpolación lineal con velocidad de avance F.</li><li><b>G02</b> y <b>G03</b>: interpolación circular horaria y antihoraria.</li><li><b>M03</b>, <b>M05</b>: giro del husillo. <b>M08</b>, <b>M09</b>: refrigerante.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Programación de torno: compensación</summary><div class="inner"><p>En torno, el programa se escribe con coordenadas X (diámetro) y Z (longitud). La compensación de radio de herramienta permite programar la trayectoria del filo ideal.</p>
 <div class="box trap deepnote"><b>Cuidado.</b> En torno, la coordenada X suele programarse como diámetro. Si la pieza se mide por radio, la cota sale mitad.</div></div></details>
+<!--manim:isp-t10b--><figure class="fig manim-fig" id="anim-isp-t10b"><p class="ft">Animación · Velocidad de corte y de giro</p><div class="manim" data-anim="isp-t10b"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro.</figcaption></figure><!--/manim-->
 <h4><span class="hn">2</span>Cálculo de velocidades de corte</h4>
 <div class="eqd">\[v_c=\frac{\pi\,D\,n}{1000}\ \text{(m/min)}\qquad v_f=f\,n\]</div>
 <p>\(D\) es el diámetro en mm, \(n\) las revoluciones por minuto y \(f\) el avance por vuelta en mm/rev. La velocidad de corte depende del material de la herramienta y de la pieza.</p>
@@ -191,7 +192,7 @@ Los dos arcos cierran. Si no cerraran, el control daría error de geometría al 
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
-<script src="anim-manim.js?v=26804" defer></script>
-<script src="anim-temas.js?v=26804" defer></script>
+<script src="anim-manim.js?v=28284" defer></script>
+<script src="anim-temas.js?v=28284" defer></script>
 </body>
 </html>
